@@ -104,8 +104,9 @@ apt
  The apt section is used to list the packages on which the app depends and the sources
  to fetch them.
 
-- **arch** : Binaries architecture. It must match the one used in the sources configuration.
+- **arch**: Binaries architecture. It must match the one used in the sources configuration.
 - **sources**: apt sources to be used to retrieve the packages.
+
     * **sourceline**: apt configuration source line. It's recommended to include the Debian architecture on
       it to speed up builds.
     * **key_url**: apt key to validate the packages in the repository. An URL to the actual
