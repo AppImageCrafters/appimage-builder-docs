@@ -1,0 +1,12 @@
+[[source]] # Here goes your package sources (where you are downloading your packages from).
+url = "https://pypi.python.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages] # Here goes your package requirements for developing the application and its versions (which packaes you will use when developing the application)
+sphinx = "*"
+recommonmark = "*"
+sphinx-rtd-theme = "*"
+
+[requires]
+python_version = "3.6"
