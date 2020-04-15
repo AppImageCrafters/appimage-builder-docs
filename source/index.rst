@@ -1,4 +1,5 @@
 .. _index:
+
 """"""""""""""""""""""""""""""""""""""""
 appimage-builder |version| documentation
 """"""""""""""""""""""""""""""""""""""""
@@ -53,15 +54,6 @@ First steps
 :doc:`intro/examples`
     Learn more by playing with a pre-made `appimage-builder` project.
 
-.. _section-basics:
-
-.. toctree::
-   :maxdepth: 2
-   recipe
-   troubleshooting
-   examples
-   first steps
-   :caption: Contents:
 
 ====================
 Recipe specification
@@ -75,11 +67,3 @@ Recipe specification
 
 :doc:`recipe/version_1`
     Specification of the `appimage-builder` version 1 recipe format.
-
-==================
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
