@@ -1,8 +1,8 @@
 .. _intro-overview:
 
-============================
+""""""""""""""""""""""""""""
 appimage-builder at a glance
-============================
+""""""""""""""""""""""""""""
 
 `appimage-builder` is a tool for packaging other applications into AppImages. Any kind of
 application can be packaged using this tool and unlike `other AppImage creation tools`_ it can be
