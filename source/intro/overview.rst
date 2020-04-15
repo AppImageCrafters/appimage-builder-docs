@@ -115,7 +115,18 @@ Finally the AppRun and libapprun_hooks.so files are added. The first one loads t
 application. The other makes sure that the environment configuration that is required to execute your AppImage
 doesn't propagate to other applications executed.
 
-4. Bundling
+4. Tests
+--------
+
+Once the binaries and the runtime configuration are in place the AppDir is considered completed and can be executed
+as follows: ``AppDir/AppRun``. This is the same command used by the AppImage runtime to start the application. At this
+point `appimage-builder` proceeds to run the tests cases described in ``AppDir >> test``. In each test case the
+command specified at ``AppDir >> test >> (test name) >> command`` is executed inside a container made of the image
+specified at ``AppDir >> test >> (test name) >> image``. This allow us to test how will behave the application in
+different systems without the need create a virtual machine.
+
+
+5. Bundling
 -----------
 
 Finally the whole AppDir is compressed into an squashfs file and appended to a runtime binary. This binary does
