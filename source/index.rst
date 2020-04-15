@@ -1,6 +1,6 @@
-========================================
+""""""""""""""""""""""""""""""""""""""""
 appimage-builder |version| documentation
-========================================
+""""""""""""""""""""""""""""""""""""""""
 
 ``appimage-builder`` is a novel tool for creating AppImages. It uses the
 system package manager to resolve the application dependencies and
