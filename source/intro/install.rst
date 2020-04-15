@@ -17,7 +17,7 @@ Install on Debian/Ubuntu
 ------------------------
 Installing dependencies
 
-.. code-block::
+.. code-block:: shell
 
     sudo apt install -y python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev
 
@@ -27,13 +27,13 @@ Installing dependencies
 
 Installing latest tagged release:
 
-.. code-block::
+.. code-block:: shell
 
     sudo pip3 install appimage-builder
 
 Installing development version:
 
-.. code-block::
+.. code-block:: shell
 
     sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
 
@@ -44,7 +44,7 @@ Install in a Docker container
 There is an issue in the AppImage runtime format that prevents it proper execution inside docker containers.
 Therefore we must use the following workaround to make `appimagetool` work properly:
 
-.. code-block::
+.. code-block:: shell
 
     # Install appimagetool AppImage
     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /opt/appimagetool

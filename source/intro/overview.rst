@@ -20,7 +20,7 @@ Walk-through of an example `appimage-builder` recipe
 a recipe for building a Bash AppImage:
 
 
-.. code-block::
+.. code-block:: yaml
 
     version: 1
 
@@ -61,7 +61,7 @@ a recipe for building a Bash AppImage:
 
 Put this in a file named `appimage-builder.yml` and run the tool using the following command:
 
-.. code-block::
+.. code-block:: shell
 
     appimage-builder --recipe appimage-builder.yml
 
@@ -69,7 +69,7 @@ When this finishes you will have in current working directory an AppImage file l
 
 To execute it just do:
 
-.. code-block::
+.. code-block:: shell
 
     ./bash-4.4.20-x86_64.AppImage
 
