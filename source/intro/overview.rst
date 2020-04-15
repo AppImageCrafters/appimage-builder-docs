@@ -13,8 +13,9 @@ used in modern systems and the resulting bundle will be backward compatible.
 **NOTICE**: Only GNU/Linux distributions that contains the **APT** package manager are supported. In
 the future other package managers will be added.
 
+----------------------------------------------------
 Walk-through of an example `appimage-builder` recipe
-====================================================
+----------------------------------------------------
 
 `appimage-builder` uses a recipe to configure the AppImage creation process. Here's an example of
 a recipe for building a Bash AppImage:
@@ -74,8 +75,9 @@ To execute it just do:
     ./bash-4.4.20-x86_64.AppImage
 
 
+-------------------
 What just happened?
-===================
+-------------------
 
 When you ran the command ``appimage-builder --recipe appimage-builder.yml`` the tool read the recipe file and executed
 the following tasks:
@@ -89,12 +91,13 @@ sources and the keys will be added to an internal keyring.
 
 Then ``apt update`` will be executed using the newly created configuration.
 
-The packages listed in the `AppDir\apt\exclude` section will be set as 'Installed' to prevent their inclusion.
+The packages listed in the ``AppDir >> apt >> exclude`` section will be set as 'Installed' in the APT configuration
+to prevent their inclusion.
 
 2. Binaries deployment
 ----------------------
 
-The packages listed in the `AppDir\apt\included` along with their dependencies will be downloaded and deployed
+The packages listed in the ``AppDir >> apt >> include`` along with their dependencies will be downloaded and deployed
 into de `AppDir` `path`. Only the `glibc` packages will be deployed to an special location on `opt/libc` so they
 can be easily ignored at runtime.
 
@@ -121,9 +124,9 @@ information and signature of the AppImage.
 
 To perform this tasks appimagetool is used. If everything went OK, the output should be a nice AppImage file.
 
-
+----------
 What else?
-==========
+----------
 
 You have seen how to make recipe for Bash and how it's used to build an AppImage. But this is just the surface.
 With appimage-builder you can create recipes for almost any kind of glibc based applications. We invite you to
@@ -133,9 +136,9 @@ Also it's important to say that contents of your bundle are not limited to those
 APT repository. You can also include self build binaries, check the script section in the recipe specification
 for more details.
 
-
+------------
 What’s next?
-============
+------------
 
 The next steps for you is to `install appimage-builder`_, `follow through the tutorial`_ to learn how to create
 recipes for more complex applications and join the `appimage community`_. Thanks for your interest!
