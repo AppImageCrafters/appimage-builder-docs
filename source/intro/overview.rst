@@ -151,5 +151,8 @@ for more details.
 What’s next?
 ------------
 
-The next steps for you is to `install appimage-builder`_, `follow through the tutorial`_ to learn how to create
-recipes for more complex applications and join the `appimage community`_. Thanks for your interest!
+The next steps for you is to :ref:`install appimage-builder <intro-install>`, :ref:`follow through the tutorial <intro-tutorial>` to learn how to create
+recipes for more complex applications and join the :ref:`appimage community <community>`.
+
+Thanks for your interest!
+

@@ -11,6 +11,8 @@ applications including those build using: ``C/C++``, ``Python``, and ``Java``.
 
 For more information about the AppImage packaging format visit: https://appimage.org/
 
+.. _community:
+
 ============
 Getting help
 ============
