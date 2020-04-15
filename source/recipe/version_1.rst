@@ -27,6 +27,8 @@ specified in this format to be parsed: ``${VAR_NAME}``.
 **NOTE**: To mix variables that must be parsed with other that not use the following
 syntax: ``!ENV '${PARSED_VAR}-"$NON_PARSED_VAR"'``
 
+.. _recipe_version_1_script:
+
 ======
 script
 ======
@@ -54,6 +56,8 @@ is deployed to be used as part of a pure QML application.
       - mkdir -p AppDir
       - cp -f main.qml AppDir/
 
+.. _recipe_version_1_appdir:
+
 ======
 AppDir
 ======
@@ -71,6 +75,9 @@ Path to the AppDir.
 
     AppDir:
       path: ./AppDir
+
+
+.. _recipe_version_1_app_info:
 
 --------
 app_info
@@ -96,6 +103,8 @@ app_info
     version: 1.0
     exec: usr/lib/qt5/bin/qmlscene
     exec_args: $@ ${APPDIR}/main.qml
+
+.. _recipe_version_1_apt:
 
 ---
 apt
@@ -163,6 +172,7 @@ once.
       - usr/share/doc/*/NEWS.*
       - usr/share/doc/*/TODO.*
 
+.. _recipe_version_1_test:
 
 ----
 test
