@@ -9,6 +9,7 @@ applications including those build using: ``C/C++``, ``Python``, and ``Java``.
 
 For more information about the AppImage packaging format visit: https://appimage.org/
 
+============
 Getting help
 ============
 
@@ -26,7 +27,7 @@ Having trouble? We'd like to help!
 .. _#appimage IRC channel: irc://irc.freenode.net/appimage
 .. _issue tracker: https://github.com/AppImageCrafters/appimage-builder/issues
 
-
+===========
 First steps
 ===========
 
@@ -61,8 +62,10 @@ First steps
    first steps
    :caption: Contents:
 
+====================
 Recipe specification
 ====================
+
 .. toctree::
    :caption: Recipe specification
    :hidden:
@@ -72,7 +75,7 @@ Recipe specification
 :doc:`recipe/version_1`
     Specification of the `appimage-builder` version 1 recipe format.
 
-
+==================
 Indices and tables
 ==================
 
