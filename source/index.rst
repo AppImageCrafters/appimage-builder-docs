@@ -1,11 +1,11 @@
-==============================
+========================================
 appimage-builder |version| documentation
-==============================
+========================================
 
-`appimage-builder` is a novel tool for creating AppImages. It uses the
+``appimage-builder`` is a novel tool for creating AppImages. It uses the
 system package manager to resolve the application dependencies and
 creates a complete bundle. It can be used to pack almost any kind of
-applications including those build using: `C/C++`, `Python`, and `Java`.
+applications including those build using: ``C/C++``, ``Python``, and ``Java``.
 
 For more information about the AppImage packaging format visit: https://appimage.org/
 
@@ -63,6 +63,14 @@ First steps
 
 Recipe specification
 ====================
+.. toctree::
+   :caption: Recipe specification
+   :hidden:
+
+   recipe/version_1
+
+:doc:`recipe/version_1`
+    Specification of the `appimage-builder` version 1 recipe format.
 
 
 Indices and tables
