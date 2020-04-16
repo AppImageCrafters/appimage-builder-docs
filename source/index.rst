@@ -23,7 +23,7 @@ Having trouble? We'd like to help!
 * Ask or search questions in `StackOverflow using the AppImage tag`_.
 * Ask or search questions in the `AppImage subreddit`_.
 * Ask a question in the `#appimage IRC channel`_.
-* Report bugs with Scrapy in our `issue tracker`_.
+* Report bugs with appimage-builder in our `issue tracker`_.
 
 .. _AppImage subreddit: https://www.reddit.com/r/appimage/
 .. _StackOverflow using the AppImage tag: https://stackoverflow.com/tags/AppImage
