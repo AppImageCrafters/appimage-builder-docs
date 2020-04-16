@@ -20,7 +20,6 @@ Getting help
 Having trouble? We'd like to help!
 
 * Try the :doc:`FAQ <faq>` -- it's got answers to some common questions.
-* Looking for specific information? Try the :ref:`genindex` or :ref:`modindex`.
 * Ask or search questions in `StackOverflow using the AppImage tag`_.
 * Ask or search questions in the `AppImage subreddit`_.
 * Ask a question in the `#appimage IRC channel`_.
