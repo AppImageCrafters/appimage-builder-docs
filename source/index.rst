@@ -7,7 +7,7 @@ appimage-builder |version| documentation
 ``appimage-builder`` is a novel tool for creating AppImages. It uses the
 system package manager to resolve the application dependencies and
 creates a complete bundle. It can be used to pack almost any kind of
-applications including those build using: ``C/C++``, ``Python``, and ``Java``.
+applications including those made using: ``C/C++``, ``Python``, and ``Java``.
 
 For more information about the AppImage packaging format visit: https://appimage.org/
 
