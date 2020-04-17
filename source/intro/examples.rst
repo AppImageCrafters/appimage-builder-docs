@@ -114,24 +114,24 @@ Gnome application (gnome-calculator)
 
       test:
         debian:
-          image: debian:stable
+          image: appimage-builder/test-env:debian-stable
           command: "./AppRun"
           use_host_x: True
         centos:
-          image: centos:6
-          command: "./AppRun --help"
+          image: appimage-builder/test-env:centos-7
+          command: "./AppRun"
           use_host_x: True
         arch:
-          image: archlinux
-          command: "./AppRun --help"
+          image: appimage-builder/test-env:archlinux-latest
+          command: "./AppRun"
           use_host_x: True
         fedora:
-          image: fedora:26
-          command: "./AppRun --help"
+          image: appimage-builder/test-env:fedora-30
+          command: "./AppRun"
           use_host_x: True
         ubuntu:
-          image: ubuntu:xenial
-          command: "./AppRun --help"
+          image: appimage-builder/test-env:ubuntu-xenial
+          command: "./AppRun"
           use_host_x: True
 
 
