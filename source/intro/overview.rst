@@ -64,7 +64,7 @@ Put this in a file named `appimage-builder.yml` and run the tool using the follo
 
 .. code-block:: shell
 
-    appimage-builder --recipe appimage-builder.yml
+    appimage-builder --recipe appimage-builder.yml --skip-test
 
 When this finishes you will have in current working directory an AppImage file like this: `bash-4.4.20-x86_64.AppImage`
 
