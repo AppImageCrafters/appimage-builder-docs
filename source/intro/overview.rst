@@ -50,7 +50,7 @@ a recipe for building a Bash AppImage:
 
       test:
         centos:
-          image: centos:6
+          image: appimage-builder/test-env:centos-7
           command: "./AppRun -c \"ls\""
           use_host_x: True
 
