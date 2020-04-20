@@ -55,6 +55,20 @@ First steps
 :doc:`intro/examples`
     Learn more by playing with a pre-made `appimage-builder` project.
 
+===============
+Advanced topics
+===============
+
+.. toctree::
+   :caption: Advanced topics
+   :hidden:
+
+   advanced/updates
+
+
+:doc:`advanced/updates`
+    Add delta updates support to your AppImage
+
 
 ====================
 Recipe specification
