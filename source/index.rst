@@ -65,10 +65,14 @@ Advanced topics
 
    advanced/updates
 
+   advanced/signing
+
 
 :doc:`advanced/updates`
     Add delta updates support to your AppImage
 
+:doc:`advanced/signing`
+    Sign your binaries to protect your users
 
 ====================
 Recipe specification
