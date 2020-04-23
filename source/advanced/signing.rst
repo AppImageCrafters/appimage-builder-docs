@@ -11,7 +11,7 @@ to be the author, and ensures that the file has not been tampered with.
 Key Generation
 ==============
 
-To sign an AppImage file you will need a key. Use ``gpg2 --full-gen-key`` to generate a new one. You can also check
+To sign an AppImage file you will need a GPG key. Use ``gpg2 --full-gen-key`` to generate a new one. You can also check
 the `GnuPG documentation`_ to learn more about it.
 
 .. _GnuPG documentation: https://www.gnupg.org/gph/en/manual/c14.html
@@ -20,7 +20,7 @@ the `GnuPG documentation`_ to learn more about it.
 Signing
 =======
 
-To sign your the resulting AppImage using appimage-builder is enough with specifying the key id in the
+To make appimage-builder use your key to sing the resulting AppImage is enough with specifying the key id in the
 ``AppImage >> signature`` section as follows:
 
 
@@ -36,7 +36,7 @@ Use ``gpg --import private.key`` to do it.
 Reading the signature
 =====================
 
-The check if the AppImage was properly signed execute it with the following option ``--appimage-signature`` it will
+To check if the AppImage was properly signed execute it with the following option ``--appimage-signature`` it will
 print the signature, if any, to the standard output.
 
 .. code-block:: shell
