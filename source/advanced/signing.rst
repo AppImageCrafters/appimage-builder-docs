@@ -29,6 +29,9 @@ To sign your the resulting AppImage using appimage-builder is enough with specif
     AppImage:
       sign-key: 69O7M4CCE10E0273853CDA121896X515CC81F0AD
 
+**NOTE**: The private key must be available in the user keyring for GnuPG to find it.
+Use ``gpg --import private.key`` to do it.
+
 =====================
 Reading the signature
 =====================
