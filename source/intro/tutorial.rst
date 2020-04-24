@@ -170,25 +170,37 @@ should be extracted.
             key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
 
         include:
-            - libqt5core5a
-            - libqt5dbus5
-            - libqt5gui5
-            - libqt5network5
-            - libqt5printsupport5
-            - libqt5qml5
-            - libqt5quick5
-            - libqt5quickcontrols2-5
-            - libqt5quicktemplates2-5
-            - libqt5svg5
-            - libqt5texttospeech5
-            - libqt5widgets5
-            - libqt5x11extras5
-            - libqt5xml5
-            - qml-module-qtquick2
-            - qml-module-qtquick-controls2
-            - qml-module-qtquick-layouts
-            - qml-module-qtquick-templates2
-            - qml-module-qtquick-window2
+          - libqt5core5a
+          - libqt5dbus5
+          - libqt5gui5
+          - libqt5network5
+          - libqt5printsupport5
+          - libqt5qml5
+          - libqt5quick5
+          - libqt5quickcontrols2-5
+          - libqt5quicktemplates2-5
+          - libqt5svg5
+          - libqt5texttospeech5
+          - libqt5widgets5
+          - libqt5x11extras5
+          - libqt5xml5
+          - qml-module-qtquick2
+          - qml-module-qtquick-controls2
+          - qml-module-qtquick-layouts
+          - qml-module-qtquick-templates2
+          - qml-module-qtquick-window2
+
+        exclude:
+          - core-packages
+          - graphics-stack-packages
+          - xclient-packages
+
+
+As you can see an exclude section is also present. There are included the packages that should not be bundled into
+the AppDir. The ``core-packages``, ``graphics-stack-packages``, and ``xclient-packages`` entries are predefined
+meta-packages. If you wonder why we recommend to exclude the graphics stack packages and the xclient ones, it's
+because of the NVidia drivers leak of portability.
+
 
 Testing the AppDir
 ==================
@@ -269,26 +281,30 @@ some docker images ready for you to use check out: https://hub.docker.com/orgs/a
             key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
 
         include:
-            - libqt5core5a
-            - libqt5dbus5
-            - libqt5gui5
-            - libqt5network5
-            - libqt5printsupport5
-            - libqt5qml5
-            - libqt5quick5
-            - libqt5quickcontrols2-5
-            - libqt5quicktemplates2-5
-            - libqt5svg5
-            - libqt5texttospeech5
-            - libqt5widgets5
-            - libqt5x11extras5
-            - libqt5xml5
-            - qml-module-qtquick2
-            - qml-module-qtquick-controls2
-            - qml-module-qtquick-layouts
-            - qml-module-qtquick-templates2
-            - qml-module-qtquick-window2
+          - libqt5core5a
+          - libqt5dbus5
+          - libqt5gui5
+          - libqt5network5
+          - libqt5printsupport5
+          - libqt5qml5
+          - libqt5quick5
+          - libqt5quickcontrols2-5
+          - libqt5quicktemplates2-5
+          - libqt5svg5
+          - libqt5texttospeech5
+          - libqt5widgets5
+          - libqt5x11extras5
+          - libqt5xml5
+          - qml-module-qtquick2
+          - qml-module-qtquick-controls2
+          - qml-module-qtquick-layouts
+          - qml-module-qtquick-templates2
+          - qml-module-qtquick-window2
 
+        exclude:
+          - core-packages
+          - graphics-stack-packages
+          - xclient-packages
       test:
         ubuntu-xenial:
           image: appimage-builder/test-env:ubuntu-xenial
