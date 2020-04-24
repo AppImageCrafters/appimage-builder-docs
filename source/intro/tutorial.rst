@@ -290,7 +290,7 @@ some docker images ready for you to use check out: https://hub.docker.com/orgs/a
             - qml-module-qtquick-window2
 
       test:
-        centos:
+        ubuntu-xenial:
           image: appimage-builder/test-env:ubuntu-xenial
           command: "./AppRun"
           use_host_x: True
