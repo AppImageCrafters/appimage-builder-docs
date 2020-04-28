@@ -4,204 +4,99 @@
 AppImage creation tutorial
 """"""""""""""""""""""""""
 
-In this page is explained how to build an AppImage using appimage-builder from scratch. We will be covering the
-following topics:
+In this page is explained how to build an AppImage for a simple Qt/Qml application. The tutorial is meant to be
+performed in a Ubuntu system where **appimage-builder** have been installed. Check the :ref:`intro-install`
+for instructions. The application code can be found `here`_.
 
-- application dependencies lockup
-- recipe writing
-- AppDir testing
+.. _here: https://www.opencode.net/azubieta/qt-appimage-template
 
+===================
+Build Configuration
+===================
 
-========================
-Application dependencies
-========================
+To pack an application as AppImage we need to configure it as it were to be installed in a regular GNU/Linux
+system. That implies using a ``Release`` configuration and setting as ``/usr`` as installation prefix. But
+instead of installing it to our root dir ``/``, it's going to be installed to ``AppDir``. This directory will
+be used later to also deploy the application dependencies.
 
-To build an appimage-builder recipe you need to know which packages provide the dependencies that are required by your
-application. If you are the application author and your development environment is Debian, Ubuntu, or some other
-distribution that uses the APT package manager you should be familiar with such packages. In the other hand, if you are
-not the application author or you are not familiar with APT based system you will need to find out such packages. Here
-we will describe how to do it.
-
-Does the target application has an existent Debian package ?
-============================================================
-
-If the application you are targeting already has a Debian package the process is simple. You query the dependencies
-using  ``apt-cache depends <package name>`` or you can manually download the package from the repository and run
-``dpkg-deb --info <deb file name>``.
-
-There you will have the list of packages your applications depends on.
-
-Building the application in a Debian based system
-=================================================
-
-In this scenario you will need an APT based system to build your application. The build process will require you to
-install both the application build dependencies and the runtime ones. This could be a bit complicated luckily there
-is a tool to find what package provides a given file.
-
-Use `apt-file`_ to find out which packages provides the files you need to build your application, for example,
-``apt-file find cmake`` and ``apt-get install <package name>`` to install the package.
-
-.. _apt-file: https://wiki.debian.org/apt-file
-
-
-Runtime dependencies
-====================
-
-Once you have a working binary we will proceed to find which are files that are really needed by your application at
-runtime. To do so, we will execute the application using the following instructions:
+It's recommended that the applications install procedure also deploys a desktop entry and a icon for the
+application, as in a regular installation. These resources will be used to infer the bundle metadata.
 
 .. code-block:: shell
 
-   APP=./my_app
-   LIBRARIES=$(LD_DEBUG=libs $APP 2>&1 | grep 'init: ' | rev | cut -f 1 -d' ' | rev)
-   for LIB in $LIBRARIES; do echo -n '    - '; dpkg-query -S $LIB | cut -d':' -f 1 ; done | sort -u
+    git clone https://www.opencode.net/azubieta/qt-appimage-template.git
+    cd qt-appimage-template
+    cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+    make install DESTDIR=AppDir
 
-The above **Bash** code snippet will execute ``./my_app`` and will list all the libraries that are opened at runtime. Therefore
-it's important that while the application is open you use/test almost every feature. This will guarantee that even such
-libraries that are plugins are loaded and listed. Depending on the amount of dependencies your app has it may take a
-while to complete.
 
-Notice that we use ``dpkg-query -s`` instead of ``apt-file find`` to resolve package names. As the files are already in
-installed in your system ``dpkg-query`` will provide a quicker result.
+=================
+Recipe Generation
+=================
 
-At this point you should have a package list like this (but with much more entries):
+Once the application binaries are deployed to an ``AppDir`` we proceed to run ``appimage-builder --generate``. This
+will proceed to read the application executable from the desktop entry and launch it. The application will shows up
+you can proceed to close it. In complex applications where external plugins are used it's recommended to test all
+the features before closing, this will make sure that all runtime dependencies are identified.
+
+Now the tool proceeds to confirm the bundle metadata. At this point you can customize the application id, name,
+icon, version, executable path, execution arguments and the target architecture.
+
 
 .. code-block:: shell
 
-    - libc6
-    - libpcre3
-    - libselinux1
+    ? ID [Eg: com.example.app] : QtQuickControls2Application
+    ? Application Name : Qt AppImage Template
+    ? Icon : QtQuickControls2Application
+    ? Version : latest
+    ? Executable path relative to AppDir [usr/bin/app] : usr/bin/qt-appimage-template
+    ? Arguments [Default: $@] : $@
+    ? Architecture :  amd64
 
-That's all you need to place in ``AppDir >> apt >> include``.
+Once done the recipe is printed to the standard output and to a file named ``AppImageBuilder.yml``
 
-A note on X11 client and the graphics stack
--------------------------------------------
+Filling the gaps
+================
 
-The `linux graphics stack`_ is a quite complicated and entangled thing and thanks to NVidea it's not portable between
-different kernel versions. Therefore it shoul not be included in the AppImages (if included they will not work on NVidea
-systems). The following packages most not be placed in the include list. Regular expresion were used to match several
-packages.
+If you open the ``AppImageBuilder.yml`` file you will find along the apt source line configuration
+a set of empty ``key_url`` entries. Those cannot be resolved currently by the tool and must be filled
+manually.
 
-Packages that should not be bundled:
+Apt repositories key urls are usually located in the repository root. In the case of the Ubuntu
+official repositories and PPAs they can be found in the `Ubuntu keyserver`_.
 
-- ``libxcb.*``
-- ``libgl.*``
-- ``libegl.*``
-- ``libx11.*``
+.. _Ubuntu keyserver: http://keyserver.ubuntu.com/
 
-.. _linux graphics stack: https://blogs.igalia.com/itoral/2014/07/29/a-brief-introduction-to-the-linux-graphics-stack/
+There is no need to set a ``key_url`` for each ``sourceline`` if it was set before as all the keys are
+added to the same keyring. Let's remove all the empty ``key_url`` entries to make apt complain about
+the missing keys and run ``appimage-builder``.
 
-=======================
-Writing down the recipe
-=======================
+You will see something like this, check the line ends:
 
+.. code-block:: text
 
-Once all the `application dependencies`_ are identified we can proceed to write down our recipe file. Let's make an
-AppImage for `qt demo app`_.
-
-.. _qt demo app: https://www.opencode.net/azubieta/qt-appimage-template
-
-
-Let's start by creating a folder named ``qt-demo-appimage`` and place inside a file name ``appimage-builder.yml``. The
-first thing that we should place in the file is the appimage-builder format to be used, in this case ``1``.
-
-.. code-block:: yaml
-
-    version: 1
+    INFO:apt-get:Err:2 http://archive.ubuntu.com/ubuntu bionic-updates InRelease
+    INFO:apt-get:The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B4FE6ACC0B21F32
 
 
-Building the application binaries
-=================================
+To make an ubuntu keyring url you can use the following snippet, replace ``<KEY ID>`` by the value that comes
+after the NO_PUBKEY in the `appimage-builder` output:
 
-Then we proceed to add the application build instructions. For this purpose we will use the
-:ref:`recipe_version_1_script` section. There you can execute all kinds of shell scripts.
+.. code-block:: text
 
+    http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x<KEY ID>
+    http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3B4FE6ACC0B21F32
 
-.. code-block:: yaml
-
-    script:
-     - git clone https://www.opencode.net/azubieta/qt-appimage-template.git
-     - cd qt-appimage-template; cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
-     - cd qt-appimage-template; DESTDIR=../AppDir make install
-
-With those instructions we download the project source code. Then it's configured for installation and finally
-it's installed to ``AppDir``.
-
-Describing the application
-==========================
-
-In order to provide a consistent user experience it's required to fill some information about he application. This
-must be placed inside the :ref:`recipe_version_1_app_info` section.
-
-.. code-block:: yaml
-
-    AppDir:
-      app_info:
-            id: net.appimage-builder.demo-app
-            name: AppImage Builder Demo App
-            icon: QtQuickControls2Application
-            version: latest
-            exec: usr/bin/qt-appimage-template
-            exec_args: "$@"
 
 Deploying dependencies
 ======================
 
-Dependencies are deployed according to the :ref:`recipe_version_1_apt` section specification. You need to specify
-the binaries target architecture, the source lines as they are usually written in ``/etc/apt/sources.list``, and
-the URLs of the sources keys.
-
-Then, in the ``include`` section are list your application dependencies. You will not have to write every single
-package you application depends on, instead you should only place those that are direct dependencies.
-
-**NOTE**: It's important to specify the ``path`` entry inside the ``AppDir`` as this will point out where the downloaded packages
-should be extracted.
+Run ``appimage-builder --skip-test --skip-appimage`` to deploy the dependencies into to ``AppDir``. Notice we all
+intentionally skipping the test and AppImage generation steps. Once the process complete should have a working
+``AppDir``. To do a quick test you can run ``AppDir/AppRun`` and the application will show up.
 
 
-.. code-block:: yaml
-
-    AppDir:
-      path: ./AppDir
-
-      apt:
-        arch: amd64
-        sources:
-          - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse'
-            key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
-
-        include:
-          - libqt5core5a
-          - libqt5dbus5
-          - libqt5gui5
-          - libqt5network5
-          - libqt5printsupport5
-          - libqt5qml5
-          - libqt5quick5
-          - libqt5quickcontrols2-5
-          - libqt5quicktemplates2-5
-          - libqt5svg5
-          - libqt5texttospeech5
-          - libqt5widgets5
-          - libqt5x11extras5
-          - libqt5xml5
-          - qml-module-qtquick2
-          - qml-module-qtquick-controls2
-          - qml-module-qtquick-layouts
-          - qml-module-qtquick-templates2
-          - qml-module-qtquick-window2
-
-        exclude:
-          - core-packages
-          - graphics-stack-packages
-          - xclient-packages
-
-
-As you can see an exclude section is also present. There are included the packages that should not be bundled into
-the AppDir. The ``core-packages``, ``graphics-stack-packages``, and ``xclient-packages`` entries are predefined
-meta-packages. If you wonder why we recommend to exclude the graphics stack packages and the xclient ones, it's
-because of the NVidia drivers leak of portability.
-
-
+==================
 Testing the AppDir
 ==================
 
@@ -209,109 +104,44 @@ So far we should have a functional AppDir, which can be tested by running ``AppD
 the bundle will run on our system. To know if it will run on other systems we can make use of docker. Official docker
 images tend to be minimal so they are great to test our bundle.
 
-appimage-builder provides the means to automate the :ref:`recipe_version_1_test` process. All that you have to do is specify the docker image to
-be used and the command to start the application. In case of an application with a graphical interface set
-``use_host_x`` to ``True``. This will share the host X11 server with the docker container.
+appimage-builder provides the means to automate the :ref:`recipe_version_1_test` process. All that you have to do is
+specify the docker image to be used and the command to start the application. In case of an application with a
+graphical interface set ``use_host_x`` to ``True``. This will share the host X11 server with the docker container.
+
+The generated recipe already comes with a set of tests configured, to run then use:
+
+.. code-block:: text
+   appimage-builder --skip-build --skip-appimage
+
+**NOTE**: If the docker images are not in your system it may take a while to download.
+
+Once all the tests cases are completed successfully your ``AppDir`` is ready to be transformed into an AppImage.
 
 *Two important notes on testing inside docker*:
 
-- use docker images that include X11 libraries when testing graphic applications.
-- applications with graphical interface will stay running after they are started, therefore you will have to manually
-  close then to proceed with the next test case.
+- use docker images that include X11 libraries when testing graphic applications, like the `ones here`_.
+- applications with graphical interface will stay running after they are started, therefore you will
+  have to manually close then to proceed with the next test case.
 
+.. _ones here: https://hub.docker.com/repository/docker/appimagecrafters/tests-env
 
-.. code-block:: yaml
-
-      test:
-        centos:
-          image: appimage-builder/test-env:ubuntu-xenial
-          command: "./AppRun"
-          use_host_x: True
-
-
+============================
 Bundling everything together
 ============================
 
-Once you have a running AppDir you can proceed to create the AppImage bundle. To do so just specify the architecture
-of the AppImage runtime to be used and you're done. You can see which architectures are available by checking the
-`AppImageKit project releases`_
+You have made and tested and ``AppDir`` containing your application binaries and it's dependencies. The final step
+is to generate the AppImage as follows:
 
-.. _AppImageKit project releases: https://github.com/AppImage/AppImageKit/releases/
-
-.. code-block:: yaml
-
-    AppImage:
-        arch: x86_64
-
-===============
-Complete recipe
-===============
-
-To test the whole recipe copy the following snippet in a file named ``appimage-builder.yml`` and run:
-``appimage-builder --recipe appimage-builder.yml``.
-
-Using a docker container is recommended so you don't mess your system with the application build dependencies. We have
-some docker images ready for you to use check out: https://hub.docker.com/orgs/appimagecrafters
+.. code-block:: text
+   appimage-builder --skip-build --skip-test
 
 
-.. code-block:: yaml
+===========
+What's next
+===========
 
-    version: 1
+The next steps for you is to learn how to do :ref:`advanced-updates` and :ref:`advanced-signing`. You may also want
+to check the recipe specification :ref:`recipe_version_1` for advanced tuning.
 
-    script:
-     - git clone https://www.opencode.net/azubieta/qt-appimage-template.git
-     - cd qt-appimage-template; cmake . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release
-     - cd qt-appimage-template; DESTDIR=../AppDir make install
-
-    AppDir:
-      path: ./AppDir
-
-      app_info:
-            id: net.appimage-builder.demo-app
-            name: AppImage Builder Demo App
-            icon: QtQuickControls2Application
-            version: latest
-            exec: usr/bin/qt-appimage-template
-            exec_args: "$@"
-
-      apt:
-        arch: amd64
-        sources:
-          - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse'
-            key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
-
-        include:
-          - libqt5core5a
-          - libqt5dbus5
-          - libqt5gui5
-          - libqt5network5
-          - libqt5printsupport5
-          - libqt5qml5
-          - libqt5quick5
-          - libqt5quickcontrols2-5
-          - libqt5quicktemplates2-5
-          - libqt5svg5
-          - libqt5texttospeech5
-          - libqt5widgets5
-          - libqt5x11extras5
-          - libqt5xml5
-          - qml-module-qtquick2
-          - qml-module-qtquick-controls2
-          - qml-module-qtquick-layouts
-          - qml-module-qtquick-templates2
-          - qml-module-qtquick-window2
-
-        exclude:
-          - core-packages
-          - graphics-stack-packages
-          - xclient-packages
-      test:
-        ubuntu-xenial:
-          image: appimage-builder/test-env:ubuntu-xenial
-          command: "./AppRun"
-          use_host_x: True
-
-    AppImage:
-        arch: x86_64
-
+Thanks for your interest!
 
