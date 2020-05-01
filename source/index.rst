@@ -80,6 +80,19 @@ Advanced topics
 :doc:`advanced/testing`
     Test and Troubleshoot AppImages
 
+===============
+Hosted Services
+===============
+
+.. toctree::
+   :caption: Hosted Services
+   :hidden:
+
+   hosted-services/gitlab-ci
+
+:doc:`hosted-services/gitlab-ci`
+    Learn how to produce AppImages on Gitlab instances
+
 ====================
 Recipe specification
 ====================
