@@ -35,7 +35,7 @@ In the code snippet below you can find a complete ``gitlab-ci.yml`` recipe for b
 .. _Hello World Qt project: https://www.opencode.net/azubieta/qt-hello-world/
 .. _KDE Neon repositories: http://archive.neon.kde.org/
 
-.. code-block::
+.. code-block:: yaml
 
     appimage-amd64:
         image: appimagecrafters/appimage-builder
