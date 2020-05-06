@@ -92,23 +92,23 @@ Gnome application (gnome-calculator)
 
       test:
         debian:
-          image: appimage-builder/test-env:debian-stable
+          image: appimagecrafters/tests-env:debian-stable
           command: "./AppRun"
           use_host_x: True
         centos:
-          image: appimage-builder/test-env:centos-7
+          image: appimagecrafters/tests-env:centos-7
           command: "./AppRun"
           use_host_x: True
         arch:
-          image: appimage-builder/test-env:archlinux-latest
+          image: appimagecrafters/tests-env:archlinux-latest
           command: "./AppRun"
           use_host_x: True
         fedora:
-          image: appimage-builder/test-env:fedora-30
+          image: appimagecrafters/tests-env:fedora-30
           command: "./AppRun"
           use_host_x: True
         ubuntu:
-          image: appimage-builder/test-env:ubuntu-xenial
+          image: appimagecrafters/tests-env:ubuntu-xenial
           command: "./AppRun"
           use_host_x: True
 
@@ -170,31 +170,31 @@ Qt/Kde application (kcalc)
 
       test:
         debian:
-          image: appimage-builder/test-env:debian-stable
+          image: appimagecrafters/tests-env:debian-stable
           command: "./AppRun"
           use_host_x: True
           env:
             - QT_DEBUG_PLUGINS=1
         centos:
-          image: appimage-builder/test-env:centos-7
+          image: appimagecrafters/tests-env:centos-7
           command: "./AppRun"
           use_host_x: True
           env:
             - QT_DEBUG_PLUGINS=1
         arch:
-          image: appimage-builder/test-env:archlinux-latest
+          image: appimagecrafters/tests-env:archlinux-latest
           command: "./AppRun"
           use_host_x: True
           env:
             - QT_DEBUG_PLUGINS=1
         fedora:
-          image: appimage-builder/test-env:fedora-30
+          image: appimagecrafters/tests-env:fedora-30
           command: "./AppRun"
           use_host_x: True
           env:
             - QT_DEBUG_PLUGINS=1
         ubuntu:
-          image: appimage-builder/test-env:ubuntu-xenial
+          image: appimagecrafters/tests-env:ubuntu-xenial
           command: "./AppRun"
           use_host_x: True
 
@@ -238,23 +238,23 @@ Multimedia application (VLC)
 
       test:
         debian:
-          image: appimage-builder/test-env:debian-stable
+          image: appimagecrafters/tests-env:debian-stable
           command: "./AppRun"
           use_host_x: True
         centos:
-          image: appimage-builder/test-env:centos-7
+          image: appimagecrafters/tests-env:centos-7
           command: "./AppRun"
           use_host_x: True
         arch:
-          image: appimage-builder/test-env:archlinux-latest
+          image: appimagecrafters/tests-env:archlinux-latest
           command: "./AppRun"
           use_host_x: True
         fedora:
-          image: appimage-builder/test-env:fedora-30
+          image: appimagecrafters/tests-env:fedora-30
           command: "./AppRun"
           use_host_x: True
         ubuntu:
-          image: appimage-builder/test-env:ubuntu-xenial
+          image: appimagecrafters/tests-env:ubuntu-xenial
           command: "./AppRun"
           use_host_x: True
 
