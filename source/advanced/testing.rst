@@ -16,7 +16,7 @@ cannot be embed for technical reasons. The most relevant is ``libGL`` for NVidia
 side driver version to be equal to the kernel side. Therefore the graphic stack libraries and others related to then
 are excluded.
 
-This leads us with a bundle that at runtime it uses some libraries from the system and others from the bundle. If the
+This leads us with a bundle that at runtime uses some libraries from the system and others from the bundle. If the
 ABI or the implementations of those mixed libraries are not compatible the application will crash. Luckily the libraries
 developers are careful enough to keep a good backward compatibility and the application works most of the times. But
 the only way of being 100% sure is by testing.
@@ -43,11 +43,11 @@ above to make it work.
 There is a list of pre-built docker images that you can use for your tests including the following GNU/Linux
 distributions:
 
-- Arch
-- Fedora
-- Debian
-- Ubuntu
-- Centos
+- Arch  ``appimagecrafters/tests-env:archlinux-latest``
+- Fedora ``appimagecrafters/tests-env:fedora-30``
+- Debian ``appimagecrafters/tests-env:debian-stable``
+- Ubuntu ``appimagecrafters/tests-env:ubuntu-bionic``
+- Centos ``appimagecrafters/tests-env:centos-7``
 
 Those distributions are between the most populars or are base for others so if your app work there it has a high
 provability to work on derivatives.
