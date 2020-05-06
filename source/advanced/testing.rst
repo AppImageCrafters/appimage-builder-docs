@@ -56,11 +56,13 @@ The whole docker images list can be found: https://hub.docker.com/repository/doc
 
 For details on how to setup the tests cases check the :ref:`recipe_version_1_test` specification.
 
+==================
 Recipe tests setup
 ==================
 
 Tests cases can be described in the recipe file. Those are placed inside the ``AppDir >> test`` section. Bellow you
-will find an example:
+will find an example of a test case for Debian. To know more about this section check the :ref:`recipe_version_1_test`
+specification:
 
 .. code-block:: yaml
 
@@ -72,6 +74,45 @@ will find an example:
               use_host_x: True
               env:
                 - QT_DEBUG_PLUGINS=1
+
+===================
+Manual test running
+===================
+
+Any AppImage/AppDir can be also manually tested using the ``appimage-tester`` command. This is part of
+``appimage-builder`` since ``v0.5.2``.
+
+.. code-block:: shell
+
+    usage: appimage-tester [-h] [--log LOGLEVEL] --docker-images DOCKER_IMAGE
+                       [DOCKER_IMAGE ...] [--test] [--static-test]
+                       target
+
+**NOTE**: Type 1 AppImages need to be extracted or mounted manually before running the tests.
+
+Regular Docker tests
+====================
+
+A regular test will try to run the target application inside the specified docker containers. A running X11 server
+is required if the app has a GUI.
+
+.. code-block:: shel
+
+    appimage-tester --test ~/MyApp-1.8.4.AppImage   --docker-images 'appimagecrafters/tests-env:debian-stable'
+
+
+Static Docker tests
+===================
+
+Static test will lockup the external dependencies of the given target and will check if all of then are present
+in the system contained in the docker image. This does not execute the application.
+
+.. code-block:: shel
+
+    appimage-tester --static-test ~/MyApp-1.8.4.AppImage   --docker-images 'appimagecrafters/tests-env:debian-stable'
+
+**NOTE**: Optional plugins can have runtime dependencies that may not be present in the test system but as they are
+optional the app will run properly.
 
 ===============
 Troubleshooting
