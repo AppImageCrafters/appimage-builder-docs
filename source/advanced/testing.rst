@@ -56,6 +56,23 @@ The whole docker images list can be found: https://hub.docker.com/repository/doc
 
 For details on how to setup the tests cases check the :ref:`recipe_version_1_test` specification.
 
+Recipe tests setup
+==================
+
+Tests cases can be described in the recipe file. Those are placed inside the ``AppDir >> test`` section. Bellow you
+will find an example:
+
+.. code-block:: yaml
+
+    AppDir:
+        test:
+            debian:
+              image: appimagecrafters/tests-env:debian-stable
+              command: "./AppRun"
+              use_host_x: True
+              env:
+                - QT_DEBUG_PLUGINS=1
+
 ===============
 Troubleshooting
 ===============
@@ -95,6 +112,7 @@ the following snippet:
             - LD_DEBUG=libs
 
 More information about the glibc loader debug information can be found on the tool `manual pages`_.
+
 .. _manual pages: http://man7.org/linux/man-pages/man8/ld.so.8.html
 
 To fix this issue just add to your bundle the package that provides this library.
