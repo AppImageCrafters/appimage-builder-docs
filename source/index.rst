@@ -9,7 +9,14 @@ system package manager to resolve the application dependencies and
 creates a complete bundle. It can be used to pack almost any kind of
 applications including those made using: ``C/C++``, ``Python``, and ``Java``.
 
-For more information about the AppImage packaging format visit: https://appimage.org/
+Featuring:
+ - Real GNU/Linux packaging (no more distro packaging)
+ - Simple recipes
+ - Simple workflow
+ - Backward and forward compatibility
+ - One binary, many target systems.
+
+For information about the AppImage packaging format visit: https://appimage.org/
 
 .. _community:
 
