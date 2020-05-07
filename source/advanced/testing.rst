@@ -1,10 +1,11 @@
 .. _advanced-testing:
 
-"""""""""""""""""""""""""""
-Testing and Troubleshooting
-"""""""""""""""""""""""""""
+"""""""
+Testing
+"""""""
 
-Here you will find information regarding how to test and troubleshoot your AppImage.
+`appimage-builder` provides you a simple way of testing the AppImages compatibility with different systems. It uses
+docker containers to simulate the runtime environments and runs the applications inside.
 
 ==========================
 appimage-builder AppImages
@@ -96,7 +97,7 @@ Regular Docker tests
 A regular test will try to run the target application inside the specified docker containers. A running X11 server
 is required if the app has a GUI.
 
-.. code-block:: shel
+.. code-block:: shell
 
     appimage-tester --test ~/MyApp-1.8.4.AppImage   --docker-images 'appimagecrafters/tests-env:debian-stable'
 
@@ -107,79 +108,10 @@ Static Docker tests
 Static test will lockup the external dependencies of the given target and will check if all of then are present
 in the system contained in the docker image. This does not execute the application.
 
-.. code-block:: shel
+.. code-block:: shell
 
     appimage-tester --static-test ~/MyApp-1.8.4.AppImage   --docker-images 'appimagecrafters/tests-env:debian-stable'
 
 **NOTE**: Optional plugins can have runtime dependencies that may not be present in the test system but as they are
 optional the app will run properly.
 
-===============
-Troubleshooting
-===============
-
-
-Missing libraries
-=================
-
-In some scenarios your application may crash on a certain system. This is usually happens because a required library
-is not being embed. To identify the culprit run your application using ``LD_DEBUG=libs``. This will print to the
-standard output the information related to the shared libraries loading an unloading.
-
-
-The output will look like this:
-
-.. code-block:: shell
-
-      5491:     find library=libpthread.so.0 [0]; searching
-      5491:      search cache=/etc/ld.so.cache
-      5491:       trying file=/lib/x86_64-linux-gnu/libpthread.so.0
-      5491:
-      5491:
-      5491:     calling init: /lib/x86_64-linux-gnu/libpthread.so.0
-
-In this case ``libpthread.so.0`` is found and initialized. As we will have a missing library we have to look for
-those output blocks where there is a ``find library`` with out a ``init:``. To do it in a test inside docker use
-the following snippet:
-
-.. code-block:: shell
-
-      test:
-        debian:
-          image: appimagecrafters/tests-env:fedora-30
-          command: "./AppRun"
-          use_host_x: True
-          env:
-            - LD_DEBUG=libs
-
-More information about the glibc loader debug information can be found on the tool `manual pages`_.
-
-.. _manual pages: http://man7.org/linux/man-pages/man8/ld.so.8.html
-
-To fix this issue just add to your bundle the package that provides this library.
-
-Missing resources
-=================
-
-To detect which resource files (settings files, icons, database files or others) are being used by the application we
-can use ``strace``. Specifically you can trace ``openat`` calls like this:
-
-.. code-block:: shell
-
-    $strace -e trace=openat ls
-
-    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre.so.3", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libdl.so.2", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpthread.so.0", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
-    openat(AT_FDCWD, ".", O_RDONLY|O_NONBLOCK|O_CLOEXEC|O_DIRECTORY) = 3
-    appimage-appsdir   AppImageServices  builder       builder-tests-env  libappimage                  TheAppImageWay
-    appimage-firstrun  apprun            builder-docs  cli-tool           plasma-appimage-integration
-
-Fixing this kind or issues is a bit more complicated as the path to the resources are sometime fixed in the source code.
-If it's possible you can try patching the binaries but the recommended solution is to modify the source code to resolve
-the resource files from a relative location. For this purpose you can use a configuration file next to the main binary
-or environment variables.

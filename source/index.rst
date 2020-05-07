@@ -69,6 +69,7 @@ Advanced topics
 
    advanced/testing
 
+   advanced/troubleshooting
 
 
 :doc:`advanced/updates`
@@ -78,7 +79,10 @@ Advanced topics
     Sign your binaries to protect your users
 
 :doc:`advanced/testing`
-    Test and Troubleshoot AppImages
+    Test in different systems
+
+:doc:`advanced/troubleshooting`
+    Find and fix issues
 
 ===============
 Hosted Services
