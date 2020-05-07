@@ -101,8 +101,13 @@ Hosted Services
 
    hosted-services/gitlab-ci
 
+   hosted-services/github-actions
+
 :doc:`hosted-services/gitlab-ci`
     Learn how to produce AppImages on Gitlab instances
+
+:doc:`hosted-services/github-actions`
+    Learn how to produce AppImages using GitHub Actions
 
 ====================
 Recipe specification
