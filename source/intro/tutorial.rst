@@ -1,8 +1,8 @@
 .. _intro-tutorial:
 
-""""""""""""""""""""""""""
-AppImage creation tutorial
-""""""""""""""""""""""""""
+""""""""
+Tutorial
+""""""""
 
 In this page is explained how to build an AppImage for a simple Qt/Qml application. The tutorial is meant to be
 performed in a Ubuntu system where **appimage-builder** have been installed. Check the :ref:`intro-install`

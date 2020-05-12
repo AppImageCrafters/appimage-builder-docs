@@ -1,8 +1,8 @@
 .. _intro-install:
 
-"""""""""""""""""""""""""""""""""""
-appimage-builder installation guide
-"""""""""""""""""""""""""""""""""""
+""""""""""""""""""
+Installation guide
+""""""""""""""""""
 
 The project is built using Python 3 and uses various command-line applications to
 fulfill its goal. Depending on the host system and the recipe the packages providing
