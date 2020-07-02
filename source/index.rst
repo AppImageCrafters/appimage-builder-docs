@@ -65,6 +65,7 @@ First steps
     examples/gnome
     examples/kde
     examples/multimedia
+    examples/pyqt
 
 .. toctree::
     :caption: Advanced topics
