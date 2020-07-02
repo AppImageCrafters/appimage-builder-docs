@@ -13,6 +13,7 @@ not work on systems without it.
 
 Install on Debian/Ubuntu
 ------------------------
+
 Installing dependencies
 
 .. code-block:: shell
@@ -50,3 +51,11 @@ Therefore we must use the following workaround to make `appimagetool` work prope
     cd /opt/; sudo /opt/appimagetool --appimage-extract
     sudo mv /opt/squashfs-root /opt/appimagetool.AppDir
     sudo ln -s /opt/appimagetool.AppDir/AppRun /usr/local/bin/appimagetool
+
+
+Premade Docker image
+--------------------
+
+There is a docker image with appimage-builder ready to be used at hub.docker.com. Download it using:
+
+`docker pull appimagecrafters/appimage-builder:latest`

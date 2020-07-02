@@ -1,0 +1,57 @@
+
+============================
+Multimedia application (VLC)
+============================
+
+
+.. code-block:: yaml
+
+    version: 1
+
+    script:
+      - rm -r ./AppDir || true
+
+    AppDir:
+      path: ./AppDir
+
+      app_info:
+        id: vlc
+        name: VLC media player
+        icon: vlc
+        version: 3.0.8-0-gf350b6b5a7
+        exec: usr/bin/vlc
+
+      apt:
+        arch: amd64
+        sources:
+          - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse'
+            key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
+          - sourceline: 'deb [arch=amd64] http://archive.ubuntu.com/ubuntu/ bionic-updates main restricted universe multiverse'
+
+        include:
+          - vlc
+
+      test:
+        debian:
+          image: appimagecrafters/tests-env:debian-stable
+          command: "./AppRun"
+          use_host_x: True
+        centos:
+          image: appimagecrafters/tests-env:centos-7
+          command: "./AppRun"
+          use_host_x: True
+        arch:
+          image: appimagecrafters/tests-env:archlinux-latest
+          command: "./AppRun"
+          use_host_x: True
+        fedora:
+          image: appimagecrafters/tests-env:fedora-30
+          command: "./AppRun"
+          use_host_x: True
+        ubuntu:
+          image: appimagecrafters/tests-env:ubuntu-xenial
+          command: "./AppRun"
+          use_host_x: True
+
+    AppImage:
+      arch: x86_64

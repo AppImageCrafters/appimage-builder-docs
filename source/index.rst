@@ -48,7 +48,6 @@ First steps
    intro/overview
    intro/install
    intro/tutorial
-   intro/examples
 
 :doc:`intro/overview`
     Understand what `appimage-builder` is and how it can help you.
@@ -59,65 +58,36 @@ First steps
 :doc:`intro/tutorial`
     Write your first `appimage-builder` recipe.
 
-:doc:`intro/examples`
-    Learn more by playing with a pre-made `appimage-builder` project.
+.. toctree::
+    :caption: Examples
 
-===============
-Advanced topics
-===============
+    examples/bash
+    examples/gnome
+    examples/kde
+    examples/multimedia
 
 .. toctree::
-   :caption: Advanced topics
-   :hidden:
+    :caption: Advanced topics
+    :hidden:
 
-   advanced/updates
-
-   advanced/signing
-
-   advanced/testing
-
-   advanced/troubleshooting
+    advanced/updates
+    advanced/signing
+    advanced/testing
+    advanced/troubleshooting
 
 
-:doc:`advanced/updates`
-    Add delta updates support to your AppImage
 
-:doc:`advanced/signing`
-    Sign your binaries to protect your users
-
-:doc:`advanced/testing`
-    Test in different systems
-
-:doc:`advanced/troubleshooting`
-    Find and fix issues
-
-===============
-Hosted Services
-===============
 
 .. toctree::
-   :caption: Hosted Services
-   :hidden:
+    :caption: Hosted Services
+    :hidden:
 
-   hosted-services/gitlab-ci
+    hosted-services/gitlab-ci
+    hosted-services/github-actions
 
-   hosted-services/github-actions
-
-:doc:`hosted-services/gitlab-ci`
-    Learn how to produce AppImages on Gitlab instances
-
-:doc:`hosted-services/github-actions`
-    Learn how to produce AppImages using GitHub Actions
-
-====================
-Recipe specification
-====================
 
 .. toctree::
-   :caption: Recipe specification
-   :hidden:
+    :caption: Reference
+    :hidden:
 
-   recipe/version_1
-
-:doc:`recipe/version_1`
-    Specification of the `appimage-builder` version 1 recipe format.
+    reference/version_1
