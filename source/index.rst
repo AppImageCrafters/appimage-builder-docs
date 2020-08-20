@@ -48,6 +48,7 @@ First steps
    intro/overview
    intro/install
    intro/tutorial
+   faq
 
 :doc:`intro/overview`
     Understand what `appimage-builder` is and how it can help you.
@@ -66,6 +67,7 @@ First steps
     examples/kde
     examples/multimedia
     examples/pyqt
+    examples/gimp_path_mapping
 
 .. toctree::
     :caption: Advanced topics
