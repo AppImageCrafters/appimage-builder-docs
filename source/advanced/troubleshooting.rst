@@ -17,6 +17,34 @@ the system. You can inspect then too look for missing packages or undesired exte
 **NOTE**: This file is only generated for AppImages built using ``appimage-builder`` >= v0.5.3.
 
 
+appimage-builder
+==================
+``appimage-builder`` may be used with two different log levels in its arguments. 
+The default ``--log`` level is ``INFO``,
+and the more informative ``--log`` level is ``DEBUG``.
+Users may specify log arguements in the ``appimage-builder``
+command using the ``--log LOGLEVEL`` argument where 
+"LOGLEVEL" is either "INFO" or "DEBUG".
+e.g. ``appimage-builder --log DEBUG --generate``
+
+.. code-block:: text
+
+    usage: appimage-builder [-h] [--recipe RECIPE] [--log LOGLEVEL < INFO | DEBUG> ] 
+                        [--skip-script] [--skip-build] [--skip-tests]
+                        [--skip-appimage] [--generate]
+
+    AppImage crafting tool
+    optional arguments:
+     -h, --help       show this help message and exit
+     --recipe RECIPE  recipe file path (default: $PWD/AppImageBuilder.yml)
+     --log LOGLEVEL   logging level (default: INFO, debug: DEBUG, e.g. appimage-builder --log DEBUG --generate)
+     --skip-script    Skip script execution
+     --skip-build     Skip AppDir building
+     --skip-tests     Skip AppDir testing
+     --skip-appimage  Skip AppImage generation
+     --generate       Try to generate recipe from an AppDir
+
+
 appimage-inspector
 ==================
 
