@@ -1,10 +1,12 @@
 .. _recipe_version_1:
 
-""""""""""
-Version: 1
-""""""""""
+""""""""""""""""""
+Version: 1 (Draft)
+""""""""""""""""""
 
 In this section is described the recipe specification and all the components that affects its behaviour.
+
+**THIS DOCUMENT IS UNDER CONSTRUCTION AND MAY CHANGE UNTIL THE 1.0 RELEASE OF APPIMAGE-BUILDER**
 
 =====================
 Environment variables
