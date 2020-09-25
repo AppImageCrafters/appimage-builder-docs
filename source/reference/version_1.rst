@@ -213,13 +213,6 @@ runtime
 Advanced runtime configuration.
 
 - **env**: Environment variables to be set at runtime.
-- **generator**: Runtime generator to be used. The available values are:
-
-    * proot: Use proot to run the application. It's required to bundle the system package.
-    * classic: Set's ``PT_RUNPATH`` y ``PT_INTERP`` to ELF files and other runtime configurations.
-    * wrapper: Uses a custom *AppRun* binary in combination with *libapprun_hooks* to control the runtime environment.
-      More details about its behaviour can be found in the `AppRun project repo`_. This is the **default** runtime
-      generator to be used if none is specified.
 - **path_mappings**
     Setup path mappings to workaround binaries containing fixed paths. The mapping is performed at runtime by
     intercepting every system call that contains a file path and patching it. Environment variables are supported
@@ -238,7 +231,6 @@ Advanced runtime configuration.
  .. code-block:: yaml
 
   runtime:
-    generator: wrapper
     path_mappings:
       - /etc/gimp/2.0/:$APPDIR/etc/gimp/2.0/
     env:
