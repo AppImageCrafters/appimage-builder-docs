@@ -14,7 +14,7 @@ for instructions. The application code can be found `here`_.
 Build Configuration
 ===================
 
-To pack an application as AppImage we need to configure it as it were to be installed in a regular GNU/Linux
+To pack an application as AppImage we need to configure it as if it were to be installed in a regular GNU/Linux
 system. That implies using a ``Release`` configuration and setting as ``/usr`` as installation prefix. But
 instead of installing it to our root dir ``/``, it's going to be installed to ``AppDir``. This directory will
 be used later to also deploy the application dependencies.
@@ -111,6 +111,7 @@ graphical interface set ``use_host_x`` to ``True``. This will share the host X11
 The generated recipe already comes with a set of tests configured, to run then use:
 
 .. code-block:: text
+
    appimage-builder --skip-build --skip-appimage
 
 **NOTE**: If the docker images are not in your system it may take a while to download.
@@ -133,6 +134,7 @@ You have made and tested and ``AppDir`` containing your application binaries and
 is to generate the AppImage as follows:
 
 .. code-block:: text
+
    appimage-builder --skip-build --skip-test
 
 
