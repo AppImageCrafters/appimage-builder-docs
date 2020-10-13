@@ -28,10 +28,6 @@ Qt/Kde application (kcalc)
           - kcalc
           - libpulse0
         exclude:
-          - core-packages
-          - graphics-stack-packages
-          - xclient-packages
-
           - phonon4qt5
           - libkf5service-bin
           - perl
