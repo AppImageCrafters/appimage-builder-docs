@@ -20,7 +20,7 @@ Instructions
 2. Copy the application icon to  AppDir/usr/share/icons/hicolor/256x256/apps/
 3. Install the application requirements using pip:
     `python3 -m pip install --system --ignore-installed --prefix=/usr --root=AppDir -r ./requirements.txt`
-4. Setup the **PYTHONHOME** and **PYTHONPATH** environment variables, make sure the
+4. Setup the **PYTHONHOME** and **PYTHONPATH** environment variables
 5. Run `appimage-builder`
 
 **The complete example source code can be found** `here <https://github.com/AppImageCrafters/appimage-builder/tree/master/examples/pyqt5>`_.
