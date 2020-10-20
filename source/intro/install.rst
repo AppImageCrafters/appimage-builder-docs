@@ -47,8 +47,9 @@ Therefore we must use the following workaround to make `appimagetool` work prope
 
     # Install appimagetool AppImage
     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /opt/appimagetool
-    sudo chmod +x /opt/appimagetool
-    cd /opt/; sudo /opt/appimagetool --appimage-extract
+
+    # workaround AppImage issues with Docker
+    cd /opt/; sudo chmod +x appimagetool; sed -i 's|AI\x02|\x00\x00\x00|' appimagetool; sudo ./appimagetool --appimage-extract
     sudo mv /opt/squashfs-root /opt/appimagetool.AppDir
     sudo ln -s /opt/appimagetool.AppDir/AppRun /usr/local/bin/appimagetool
 
