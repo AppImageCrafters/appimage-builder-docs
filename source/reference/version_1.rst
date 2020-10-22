@@ -65,8 +65,36 @@ AppDir
 ======
 
 The `AppDir`_ section is the heart of the recipe. It will contain information about the
-software being packed, its dependencies, the runtime configuration, and the tests. See
-the example below corresponding to a pure QML application.
+software being packed, its dependencies, the runtime configuration, and the tests.
+
+The execution order is as follows:
+- bundle dependencies
+- configure runtime
+- run tests
+
+.. _recipe_version_1_section_scripts:
+
+---------------
+section_scripts
+---------------
+
+It's possible to insert scripts before and after the bundle and runtime steps. Those can be used to perform
+additional tweaks to the AppDir before proceeding with the tests.
+
+The allowed keys are:
+- before_bundle
+- after_bundle
+- before_runtime
+- after_runtime
+
+This is an example of how to use the after bundle to patch a configuration file.
+
+.. code-block:: yaml
+
+    AppDir:
+      after_bundle: |
+        echo "source /etc/timidity/freepats.cfg" | tee AppDir/etc/timidity/timidity.cfg
+
 
 ----
 path
