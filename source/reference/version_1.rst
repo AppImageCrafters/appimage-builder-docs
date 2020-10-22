@@ -75,13 +75,14 @@ The execution order is as follows:
 .. _recipe_version_1_section_scripts:
 
 ---------------
-section_scripts
+Section scripts
 ---------------
 
 It's possible to insert scripts before and after the bundle and runtime steps. Those can be used to perform
 additional tweaks to the AppDir before proceeding with the tests.
 
 The allowed keys are:
+
 - before_bundle
 - after_bundle
 - before_runtime
