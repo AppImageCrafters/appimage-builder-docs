@@ -48,7 +48,7 @@ First steps
    intro/overview
    intro/install
    intro/tutorial
-   intro/when_aib_should_be_used
+   intro/when_to_use
    faq
 
 :doc:`intro/overview`
