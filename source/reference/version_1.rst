@@ -152,7 +152,8 @@ apt
     * **key_url**: apt key to validate the packages in the repository. An URL to the actual
       key is expected.
 - **include**: List of packages to be included in the bundle. Package dependencies will
-  also be bundled.
+  also be bundled. It's also possible to include `deb` files their path.
+
 - **exclude**: List of packages to *not* bundle. Use it to exclude packages
   that aren't required by the application.
 
@@ -165,6 +166,10 @@ apt
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
 
     include:
+      # downloaded file
+      - ./libmms0_0.6.4-2_amd64.deb
+
+      # package names
       - qmlscene
       - qml-module-qtquick2
     exclude:
