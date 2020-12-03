@@ -181,6 +181,34 @@ stored, it will be located in the current work dir with the name **appimage-buil
 It's safe to erase it and should not be included in your VCS tree.
 
 
+------
+pacman
+------
+
+This section can be used to instruct `appimage-builder` to deploy packages using the `pacman`
+package manager. It uses the pacman configuration from the host system by default but can
+be modified using the following keys:
+
+- **Architecture**: (Optional) define the architecture to be used by pacman
+- **repositories**: (Optional) define additional repositories
+- **include**: (Required) define packages to be deployed into the AppDir
+- **exclude**: (Optional) define packages to be excluded from deploying
+
+Example:
+
+.. code-block:: yaml
+
+  pacman:
+    Architecture: x86_64
+    repositories:
+      core:
+        - https://mirror.rackspace.com/archlinux/$repo/os/$arch
+        - https://mirror.leaseweb.net/archlinux/$repo/os/$arch
+    include:
+      - bash
+    exclude:
+      - perl
+
 -----
 files
 -----
