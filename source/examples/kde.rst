@@ -52,25 +52,25 @@ Qt/Kde application (kcalc)
           command: "./AppRun"
           use_host_x: True
           env:
-            - QT_DEBUG_PLUGINS=1
+            QT_DEBUG_PLUGINS: 1
         centos:
           image: appimagecrafters/tests-env:centos-7
           command: "./AppRun"
           use_host_x: True
           env:
-            - QT_DEBUG_PLUGINS=1
+            QT_DEBUG_PLUGINS: 1
         arch:
           image: appimagecrafters/tests-env:archlinux-latest
           command: "./AppRun"
           use_host_x: True
           env:
-            - QT_DEBUG_PLUGINS=1
+            QT_DEBUG_PLUGINS: 1
         fedora:
           image: appimagecrafters/tests-env:fedora-30
           command: "./AppRun"
           use_host_x: True
           env:
-            - QT_DEBUG_PLUGINS=1
+            QT_DEBUG_PLUGINS: 1
         ubuntu:
           image: appimagecrafters/tests-env:ubuntu-xenial
           command: "./AppRun"

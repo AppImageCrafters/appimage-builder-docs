@@ -256,7 +256,7 @@ following parameters:
 - **command**: command to execute.
 - **use_host_x**: whether to share or not the host X11 session with the container.
   *This feature may not be supported by some containers as it depends on X11*.
-- **env**: list of environment variables to be passed to the Docker container.
+- **env**: dict of environment variables to be passed to the Docker container.
 
 .. code-block:: yaml
 
