@@ -72,6 +72,7 @@ First steps
     examples/multimedia
     examples/pyqt
     examples/gimp_path_mapping
+    examples/gambas3
 
 .. toctree::
     :caption: Advanced topics

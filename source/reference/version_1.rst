@@ -270,6 +270,8 @@ following parameters:
       command: "./AppRun main.qml"
       use_host_x: True
 
+.. _recipe_version_1_runtime:
+
 -------
 runtime
 -------
