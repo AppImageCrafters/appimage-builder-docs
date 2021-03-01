@@ -35,7 +35,7 @@ Recipe Generation
 =================
 
 Once the application binaries are deployed to an ``AppDir`` we proceed to run ``appimage-builder --generate``. This
-will proceed to read the application executable from the desktop entry and launch it. The application will shows up
+will proceed to read the application executable from the desktop entry and launch it. The application will show up and
 you can proceed to close it. In complex applications where external plugins are used it's recommended to test all
 the features before closing, this will make sure that all runtime dependencies are identified.
 
