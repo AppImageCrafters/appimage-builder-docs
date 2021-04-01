@@ -124,7 +124,7 @@ Once all the tests cases are completed successfully your ``AppDir`` is ready to 
 - applications with graphical interface will stay running after they are started, therefore you will
   have to manually close then to proceed with the next test case.
 
-.. _ones here: https://hub.docker.com/repository/docker/appimagecrafters/tests-env
+.. _ones here: https://hub.docker.com/r/appimagecrafters/tests-env
 
 ============================
 Bundling everything together
