@@ -68,7 +68,6 @@ Recipe
 
       runtime:
         env:
-          PATH: '${APPDIR}/usr/bin:${PATH}'
           # Set python home
           # See https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME
           PYTHONHOME: '${APPDIR}/usr'
@@ -102,3 +101,52 @@ Recipe
       update-information: 'gh-releases-zsync|AppImageCrafters|python-appimage-example|latest|python-appimage-*x86_64.AppImage.zsync'
       sign-key: None
       arch: x86_64
+
+
+Tips/Tricks
+-----------
+
+Resolving python versions
+=========================
+
+In some scenarios a fixed python version may be required. If this version is not included in your default repository you may find 
+it in others such as:
+
+- the `deadsnakes ppa`_ for Ubuntu
+
+.. _`deadsnakes ppa`: https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
+
+
+Installing dependencies using the embed python
+==============================================
+
+If you are embedding a python version different from the one in your system the `pip install` command will fail to resolve and 
+install the right packages (it will install the packages for the python version in your system). To workaround this issue you 
+will have to use the python in the bundle.
+
+To use the bundled python binary we will move the `pip install command` from the main script section to the 'after_bundle' section.
+There we will also need to `configure the python home, paths`_ and provably install pip. In the following snippet you will find an example:
+
+.. _`configure the python home, paths`: https://docs.python.org/es/3/using/cmdline.html?highlight=pythonhome#environment-variables 
+
+.. code-block:: yaml
+
+  AppDir:
+    
+    after_bundle: |
+    # Set python 3.9 env
+    export PYTHONHOME=${APPDIR}/usr
+    export PYTHONPATH=${APPDIR}/usr/lib/python3.9/site-packages:$APPDIR/usr/lib/python3.9
+    export PATH=${APPDIR}/usr/bin:$PATH
+    # Set python 3.9 as default
+    ln -fs python3.9 $APPDIR/usr/bin/python3
+    # Install pip
+    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+    python3.9 get-pip.py
+    # Install pipenv
+    python3.9 -m pip install pipenv
+    # Generate the requirements.txt file
+    python3.9 -m pipenv lock -r > requirements.txt
+    # Install application dependencies in AppDir
+    python3.9 -m pip install --upgrade --isolated --no-input --ignore-installed --prefix=$APPDIR/usr wheel
+    python3.9 -m pip install --upgrade --isolated --no-input --ignore-installed --prefix=$APPDIR/usr -r ./requirements.txt
