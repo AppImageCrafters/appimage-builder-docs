@@ -74,7 +74,7 @@ specification:
               command: "./AppRun"
               use_host_x: True
               env:
-                - QT_DEBUG_PLUGINS=1
+                QT_DEBUG_PLUGINS: 1
 
 ===================
 Manual test running
