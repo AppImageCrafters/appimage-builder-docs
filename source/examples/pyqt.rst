@@ -109,7 +109,7 @@ Tips/Tricks
 Resolving python versions
 =========================
 
-In some scenarios a fixed python version may be required. If this version is not included in your default repository you may find 
+In some scenarios a fixed python version may be required. If this version is not included in your default repository you may find
 it in others such as:
 
 - the `deadsnakes ppa`_ for Ubuntu
@@ -120,19 +120,19 @@ it in others such as:
 Installing dependencies using the embed python
 ==============================================
 
-If you are embedding a python version different from the one in your system the `pip install` command will fail to resolve and 
-install the right packages (it will install the packages for the python version in your system). To workaround this issue you 
+If you are embedding a python version different from the one in your system the `pip install` command will fail to resolve and
+install the right packages (it will install the packages for the python version in your system). To workaround this issue you
 will have to use the python in the bundle.
 
 To use the bundled python binary we will move the `pip install command` from the main script section to the 'after_bundle' section.
 There we will also need to `configure the python home, paths`_ and provably install pip. In the following snippet you will find an example:
 
-.. _`configure the python home, paths`: https://docs.python.org/es/3/using/cmdline.html?highlight=pythonhome#environment-variables 
+.. _`configure the python home, paths`: https://docs.python.org/es/3/using/cmdline.html?highlight=pythonhome#environment-variables
 
 .. code-block:: yaml
 
   AppDir:
-    
+
     after_bundle: |
     # Set python 3.9 env
     export PYTHONHOME=${APPDIR}/usr
@@ -150,3 +150,32 @@ There we will also need to `configure the python home, paths`_ and provably inst
     # Install application dependencies in AppDir
     python3.9 -m pip install --upgrade --isolated --no-input --ignore-installed --prefix=$APPDIR/usr wheel
     python3.9 -m pip install --upgrade --isolated --no-input --ignore-installed --prefix=$APPDIR/usr -r ./requirements.txt
+
+
+SSL Certificates
+================
+
+Sadly in the GNU/Linux world the SSL certificates are not stored in a fixed location, therefore if we include
+libssl.so in our bundle it may not be able to find the certificates in some distributions. This is issue is
+discussed in detail in the `probono Linux Platform Issues`_ talk. To work around it we could embed our own copy of the certificates.
+
+.. _probono Linux Platform Issues: https://gitlab.com/probono/platformissues/-/blob/master/README.md#certificates
+
+The `certifi` python package give us a curated collection of Root Certificates that we can embed. It can be
+installed using pip o the `python3-certifi` package from Debian and Ubuntu repositories.
+
+Additionally you will have to set the SSL_CERT_FILE environment pointing to the `cacert.pem` file.
+
+
+.. code-block:: yaml
+
+      runtime:
+        env:
+          # Set python home
+          # See https://docs.python.org/3/using/cmdline.html#envvar-PYTHONHOME
+          PYTHONHOME: '${APPDIR}/usr'
+          # Path to the site-packages dir or other modules dirs
+          # See https://docs.python.org/3/using/cmdline.html#envvar-PYTHONPATH
+          PYTHONPATH: '${APPDIR}/usr/lib/python3.8/site-packages'
+          # SSL Certificates are placed in a different location for every system therefore we ship our own copy
+          SSL_CERT_FILE: '${APPDIR}/usr/lib/python3.8/site-packages/certifi/cacert.pem'
