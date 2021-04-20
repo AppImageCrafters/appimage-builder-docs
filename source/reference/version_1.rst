@@ -193,6 +193,7 @@ be modified using the following keys:
 - **repositories**: (Optional) define additional repositories
 - **include**: (Required) define packages to be deployed into the AppDir
 - **exclude**: (Optional) define packages to be excluded from deploying
+- **options**: (Optional) define additional options to be set in the pacman.conf
 
 Example:
 
@@ -208,6 +209,9 @@ Example:
       - bash
     exclude:
       - perl
+    options:
+      # don't check package signatures
+      SigLevel: "Optional TrustAll"
 
 -----
 files
