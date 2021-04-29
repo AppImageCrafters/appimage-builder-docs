@@ -32,7 +32,7 @@ Replace ``<user>`` by the GitHub user or organization name and ``project`` buy t
 Workflow example
 ================
 
-A complete example project can be found at: https://github.com/AppImageCrafters/qt-hello-world
+A complete example project can be found at: https://github.com/AppImageCrafters/appimage-demo-qt5
 
 .. code-block:: yaml
 

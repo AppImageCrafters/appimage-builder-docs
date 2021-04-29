@@ -28,7 +28,7 @@ Archlinux
 
 .. code-block:: shell
 
-    sudo pacman -Sy python-pip python-setuptools patchelf desktop-file-utils gdk-pixbuf2 wget fakeroot strace
+    sudo pacman -Sy python-pip python-setuptools binutils patchelf desktop-file-utils gdk-pixbuf2 wget fakeroot strace
 
     # Install appimagetool AppImage
     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
@@ -59,7 +59,9 @@ There is a docker image with appimage-builder ready to be used at hub.docker.com
 
 Use the following command to get it:
 
-`docker pull appimagecrafters/appimage-builder:latest`
+.. code-block:: shell
+
+    docker pull appimagecrafters/appimage-builder:latest
 
 
 Install appimagetool

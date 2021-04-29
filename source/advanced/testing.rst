@@ -53,7 +53,7 @@ distributions:
 Those distributions are between the most populars or are base for others so if your app work there it has a high
 provability to work on derivatives.
 
-The whole docker images list can be found: https://hub.docker.com/repository/docker/appimagecrafters/tests-env
+The whole docker images list can be found: https://hub.docker.com/r/appimagecrafters/tests-env
 
 For details on how to setup the tests cases check the :ref:`recipe_version_1_test` specification.
 
@@ -74,7 +74,7 @@ specification:
               command: "./AppRun"
               use_host_x: True
               env:
-                - QT_DEBUG_PLUGINS=1
+                QT_DEBUG_PLUGINS: 1
 
 ===================
 Manual test running

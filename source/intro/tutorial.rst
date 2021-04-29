@@ -14,7 +14,7 @@ for instructions. The application code can be found `here`_.
 Build Configuration
 ===================
 
-To pack an application as AppImage we need to configure it as it were to be installed in a regular GNU/Linux
+To pack an application as AppImage we need to configure it as if it were to be installed in a regular GNU/Linux
 system. That implies using a ``Release`` configuration and setting ``/usr`` as installation prefix. But
 instead of installing it to our root dir ``/``, it's going to be installed to ``AppDir``. This directory will
 be used later to also deploy the application dependencies.
@@ -35,7 +35,7 @@ Recipe Generation
 =================
 
 Once the application binaries are deployed to an ``AppDir`` we proceed to run ``appimage-builder --generate``. This
-will proceed to read the application executable from the desktop entry and launch it. The application will shows up
+will proceed to read the application executable from the desktop entry and launch it. The application will show up and
 you can proceed to close it. In complex applications where external plugins are used it's recommended to test all
 the features before closing, this will make sure that all runtime dependencies are identified.
 
@@ -124,7 +124,7 @@ Once all the tests cases are completed successfully your ``AppDir`` is ready to 
 - applications with graphical interface will stay running after they are started, therefore you will
   have to manually close then to proceed with the next test case.
 
-.. _ones here: https://hub.docker.com/repository/docker/appimagecrafters/tests-env
+.. _ones here: https://hub.docker.com/r/appimagecrafters/tests-env
 
 ============================
 Bundling everything together

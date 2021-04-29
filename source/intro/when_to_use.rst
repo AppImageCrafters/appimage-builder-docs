@@ -32,7 +32,7 @@ When should I **NOT** use appimage-builder?
 You will get an smaller bundle that will require less updates using other
 AppImage creation tools such as `linuxdeploy`_
 
-.. _linuxdeploy: https://appimage-builder.readthedocs.io/en/latest/
+.. _linuxdeploy: https://github.com/linuxdeploy/
 
 -----------------------------------
 When should I use appimage-builder?
