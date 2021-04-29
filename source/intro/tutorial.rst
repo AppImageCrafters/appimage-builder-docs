@@ -10,16 +10,12 @@ for instructions. The application code can be found `here`_.
 
 .. _here: https://www.opencode.net/azubieta/qt-appimage-template
 
-=======================
-Compile the Application
-=======================
+=====================
+Compiling the sources
+=====================
 
-The first step in our process is to build the application binaries and deploy them into a folder named AppDir.
-It's important to use '/usr' as install prefix as appimage-builder expects to find the application resources
-such as the desktop entry and the icon in their standar paths relative to AppDir.
-
-We will use the `DESTDIR`_ make variable to install the binaries using a root different than '/'.
-Notice that while many build toolchains such as cmake support this variable it's not standard.
+The first step in our process is to build the application binaries. We will set the install prefix to '/usr' as
+appimage-builder expects to find the application resources (desktop entry and the icon) in their standard paths.
 
 .. _DESTDIR: https://www.gnu.org/prep/standards/html_node/DESTDIR.html
 
@@ -40,34 +36,67 @@ Notice that while many build toolchains such as cmake support this variable it's
     # compile the application
     make
 
-    # install the application to 'AppDir'
-    make install DESTDIR=AppDir
 
+====================
+Preparing the AppDir
+====================
 
-=================
-Recipe Generation
-=================
-
-Once the application binaries are deployed to an ``AppDir`` we proceed to run ``appimage-builder --generate``. This
-will proceed to read the application executable from the desktop entry and launch it. The application will show up and
-you can proceed to close it. In complex applications where external plugins are used it's recommended to test all
-the features before closing, this will make sure that all runtime dependencies are identified.
-
-Now the tool proceeds to confirm the bundle metadata. At this point you can customize the application id, name,
-icon, version, executable path, execution arguments and the target architecture.
-
+We will use the `DESTDIR`_ make variable to install the binaries using a root different than '/'.
+Notice that while many build toolchains such as cmake support this variable it's not standard.
 
 .. code-block:: shell
 
-    ? ID [Eg: com.example.app] : QtQuickControls2Application
-    ? Application Name : Qt AppImage Template
-    ? Icon : QtQuickControls2Application
-    ? Version : latest
-    ? Executable path relative to AppDir [usr/bin/app] : usr/bin/qt-appimage-template
-    ? Arguments [Default: $@] : $@
-    ? Architecture :  amd64
+    # install the application to 'AppDir'
+    make install DESTDIR=AppDir
 
-Once done the recipe is printed to the standard output and to a file named ``AppImageBuilder.yml``
+After installing the application into the AppDir we need to verify that it works as expected. Therefore we will
+execute it and manually check that the application windows shows and all the components are visible and functional.
+
+If the application fails to run or doesn't shows a window when executed you will need to investigate and solve
+the issue before continuing. Notice that applications must be relocatable in order to be put inside and AppImage.
+
+.. code-block:: shell
+
+    # execute the application
+    AppDir/usr/bin/appimage-demo-qt5
+
+
+=====================
+Generating the recipe
+=====================
+
+
+`appimage-builder` is capable of inspecting the runtime dependencies of a given application to create a recipe for
+packaging it as AppImage. This can be done using the `--generate` argument as follows:
+
+.. code-block:: shell
+
+    # run recipe generation assistant
+    $ appimage-builder --generate
+
+The tool will prompt a questionary to gather the minimal required information to execute the application. If the a
+desktop entry is found in the AppDir it will be used to fill the fields but you will be able to edit all the values.
+Make sure of specifying the executable path properly otherwise the execution will fail.
+
+.. code-block:: shell
+
+    > Basic Information :
+    > ? ID [Eg: com.example.app] : appimage-demo-qt5
+    > ? Application Name : AppImage Demo Qt5
+    > ? Icon : appimage-demo-qt5
+    > ? Version : latest
+    > ? Executable path relative to AppDir [usr/bin/app] : usr/bin/appimage-demo-qt5
+    > ? Arguments [Default: $@] : $@
+    > ? Update Information [Default: guess] : guess
+    > ? Architecture :  amd64
+
+Once the questionary is completed the application will be executed. At this point ,ake sure here to test all your
+applications features so all the external resources it may use are accessed and detected by the tool. Once your are
+done testing close the application normally.
+
+The tool will filter the acessed files, map them to deb packages and refine list to only include those packages that
+are not dependencies of others already listed in order to reduce the list size. Finally the recipe will be wrote
+in a file named `AppImageBuilder.yml`.
 
 
 Deploying dependencies
