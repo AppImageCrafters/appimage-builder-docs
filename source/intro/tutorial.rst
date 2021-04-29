@@ -5,7 +5,7 @@ Tutorial
 """"""""
 
 In this page is explained how to build an AppImage for a simple Qt/Qml application. The tutorial is meant to be
-performed in a Ubuntu system where **appimage-builder** have been installed. Check the :ref:`intro-install`
+performed in a Ubuntu (18.04 or newer) system where **appimage-builder** have been installed. Check the :ref:`intro-install`
 for instructions. The application code can be found `here`_.
 
 .. _here: https://www.opencode.net/azubieta/qt-appimage-template
@@ -24,6 +24,10 @@ application, as in a regular installation. These resources will be used to infer
 
 .. code-block:: shell
 
+    # install the application build dependencies
+    sudo apt-get install zlib1g-dev git cmake qtdeclarative5-dev qml-module-qtquick-layouts qml-module-qtquick-layouts qml-module-qtquick-controls2
+
+    # get the application source code
     git clone https://www.opencode.net/azubieta/qt-appimage-template.git
     cd qt-appimage-template
     cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
