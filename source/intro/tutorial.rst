@@ -59,38 +59,6 @@ icon, version, executable path, execution arguments and the target architecture.
 
 Once done the recipe is printed to the standard output and to a file named ``AppImageBuilder.yml``
 
-Filling the gaps
-================
-
-If you open the ``AppImageBuilder.yml`` file you will find along the apt source line configuration
-a set of empty ``key_url`` entries. Those cannot be resolved currently by the tool and must be filled
-manually.
-
-Apt repositories key urls are usually located in the repository root. In the case of the Ubuntu
-official repositories and PPAs they can be found in the `Ubuntu keyserver`_.
-
-.. _Ubuntu keyserver: http://keyserver.ubuntu.com/
-
-There is no need to set a ``key_url`` for each ``sourceline`` if it was set before as all the keys are
-added to the same keyring. Let's remove all the empty ``key_url`` entries to make apt complain about
-the missing keys and run ``appimage-builder``.
-
-You will see something like this, check the line ends:
-
-.. code-block:: text
-
-    INFO:apt-get:Err:2 http://archive.ubuntu.com/ubuntu bionic-updates InRelease
-    INFO:apt-get:The following signatures couldn't be verified because the public key is not available: NO_PUBKEY 3B4FE6ACC0B21F32
-
-
-To make an ubuntu keyring url you can use the following snippet, replace ``<KEY ID>`` by the value that comes
-after the NO_PUBKEY in the `appimage-builder` output:
-
-.. code-block:: text
-
-    http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x<KEY ID>
-    http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3B4FE6ACC0B21F32
-
 
 Deploying dependencies
 ======================
