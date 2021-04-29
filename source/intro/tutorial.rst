@@ -66,15 +66,15 @@ Generating the recipe
 =====================
 
 
-`appimage-builder` is capable of inspecting the runtime dependencies of a given application to create a recipe for
-packaging it as AppImage. This can be done using the `--generate` argument as follows:
+``appimage-builder`` is capable of inspecting the runtime dependencies of a given application to create a recipe for
+packaging it as AppImage. This can be done using the ``--generate`` argument as follows:
 
 .. code-block:: shell
 
     # run recipe generation assistant
     $ appimage-builder --generate
 
-The tool will prompt a questionary to gather the minimal required information to execute the application. If the a
+The tool will prompt a questionnaire to gather the minimal required information to execute the application. If the a
 desktop entry is found in the AppDir it will be used to fill the fields but you will be able to edit all the values.
 Make sure of specifying the executable path properly otherwise the execution will fail.
 
@@ -90,63 +90,156 @@ Make sure of specifying the executable path properly otherwise the execution wil
     > ? Update Information [Default: guess] : guess
     > ? Architecture :  amd64
 
-Once the questionary is completed the application will be executed. At this point ,ake sure here to test all your
+Once the questionnaire is completed the application will be executed. At this point ,ake sure here to test all your
 applications features so all the external resources it may use are accessed and detected by the tool. Once your are
 done testing close the application normally.
 
-The tool will filter the acessed files, map them to deb packages and refine list to only include those packages that
+The tool will filter the accessed files, map them to deb packages and refine list to only include those packages that
 are not dependencies of others already listed in order to reduce the list size. Finally the recipe will be wrote
-in a file named `AppImageBuilder.yml`.
+in a file named ``AppImageBuilder.yml`` located in the current working directory.
+
+=====================
+Creating the AppImage
+=====================
+
+Once you have a recipe in place you can call ``appimage-builder`` to create the final AppImage. The tool will perform
+the following steps:
+
+Script step
+===========
+
+Recipes can include an optional section name ``script``. This can be used to perform the installation of our application
+binaries to the AppDir. This is not created by the generator but you can edit the ``AppImageBuilder.yml`` file and
+add the following code before calling `appimage-builder`.
+
+This step can be skip using the `--skip-script` argument.
+
+.. code-block:: yaml
+
+    script: |
+        # remove any existent binaries
+        rm AppDir | true
+
+        # compile and install binaries into AppDir
+        cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+        make install DESTDIR=AppDir
 
 
-Deploying dependencies
-======================
+Build step
+==========
 
-Run ``appimage-builder --skip-test --skip-appimage`` to deploy the dependencies into to ``AppDir``. Notice we all
-intentionally skipping the test and AppImage generation steps. Once the process complete should have a working
-``AppDir``. To do a quick test you can run ``AppDir/AppRun`` and the application will show up.
+This is where the major part of the job is done. The tool will proceed to gather all the dependencies and to configure
+the final bundle. Here are some of the actions it will perform:
+
+- setup an independent apt configuration to resolve dependencies and download the packages
+- download the packages
+- extract the packages into the AppDir
+- copy any other file that wasn't found in a package (the ones listed in ``files > include`` )
+- remove excluded files (``files > exclude``)
+
+- configure the runtime environment which includes:
+    - configure Qt and other frameworks/modules/libraries present in the bundle
+    - setup the library and binary paths (LD_LIBRARY_PATH and PATH environment variables)
+    - setup the ld-linux interpreter and deploying the `custom AppRun`_ to ensure backward compatibility
+
+.. _custom AppRun: https://github.com/appimagecrafters/AppRun
 
 
-==================
-Testing the AppDir
-==================
+.. code-block:: shell
 
-So far we should have a functional AppDir, which can be tested by running ``AppDir/AppRun``. This will let's know if
-the bundle will run on our system. To know if it will run on other systems we can make use of docker. Official docker
-images tend to be minimal so they are great to test our bundle.
+    # create the AppImage
+    appimage-builder --recipe AppImageBuilder.yml
 
-appimage-builder provides the means to automate the :ref:`recipe_version_1_test` process. All that you have to do is
-specify the docker image to be used and the command to start the application. In case of an application with a
-graphical interface set ``use_host_x`` to ``True``. This will share the host X11 server with the docker container.
+.. note::
+    This step can be skip by passing the argument ``--skip-build``.
 
-The generated recipe already comes with a set of tests configured, to run then use:
+Test step
+=========
 
-.. code-block:: text
+The only way of ensuring that our application will run a given GNU/Linux distribution is by testing it. The tool can
+make use of docker to run the AppDir that was created in the build step in different systems according to the
+specifications on the recipe test section.
 
-   appimage-builder --skip-build --skip-appimage
+.. code-block:: yaml
 
-**NOTE**: If the docker images are not in your system it may take a while to download.
+    # test section example
+    test:
+        fedora:
+          image: appimagecrafters/tests-env:fedora-30
+          command: ./AppRun
+          use_host_x: true
+        debian:
+          image: appimagecrafters/tests-env:debian-stable
+          command: ./AppRun
+          use_host_x: true
+        arch:
+          image: appimagecrafters/tests-env:archlinux-latest
+          command: ./AppRun
+          use_host_x: true
+        centos:
+          image: appimagecrafters/tests-env:centos-7
+          command: ./AppRun
+          use_host_x: true
+        ubuntu:
+          image: appimagecrafters/tests-env:ubuntu-xenial
+          command: ./AppRun
+          use_host_x: true
 
-Once all the tests cases are completed successfully your ``AppDir`` is ready to be transformed into an AppImage.
+The application will be executed in each one of the systems listed above. You will have to manually verify that
+everything works as expected and close the application so the tests can continue.
 
-*Two important notes on testing inside docker*:
+.. note::
+    The tool will use a set of docker images that can be found here: `docker test environments`_
 
-- use docker images that include X11 libraries when testing graphic applications, like the `ones here`_.
-- applications with graphical interface will stay running after they are started, therefore you will
-  have to manually close then to proceed with the next test case.
+.. note::
+    Downloading the docker images may take a while the first time and the application may seem idle. Please be patient
+    or manually download the images using ``docker pull <image>``
 
-.. _ones here: https://hub.docker.com/r/appimagecrafters/tests-env
+    .. _docker test environments: https://hub.docker.com/r/appimagecrafters/tests-env
 
-============================
-Bundling everything together
-============================
+.. warning::
+    Docker must me installed in the system and the user must be able to use it without root permissions. Use the
+    following snippet to allow it.
 
-You have made and tested and ``AppDir`` containing your application binaries and it's dependencies. The final step
-is to generate the AppImage as follows:
+    .. code-block:: shell
 
-.. code-block:: text
+        # install docker
+        sudo apt-get install docker.io
 
-   appimage-builder --skip-build --skip-test
+        # give non root permissions
+        sudo groupadd docker
+        sudo usermod -aG docker $USER
+
+        # restart the your system
+
+
+.. note::
+    This step can be skip by passing the argument ``--skip-test``. You would like to use this argument when creating
+    scripts for packaging your software using Gitlab-Ci, GitHub Actions or other build service.
+
+
+AppImage step
+=============
+
+The tool will make use of ``appimagetool`` to generate the final ApppImage file. The resulting file should be located
+in the current working directory.
+
+Congratulations, you should have a working AppImage at this point!
+
+.. note::
+    This step can be skip by passing the argument ``--skip-appimage``.
+
+===================
+Refining the recipe
+===================
+
+While the ``--generate`` argument can be used to create an initial working recipe you will like to inspect and refine
+its contents. By example is common to find theme packages being included when those are something quite distribution
+specific. You can try removing those packages and run ``appimage-builder`` again (without the ``--generate`` argument)
+to validate that the resulting bundle is still functional. Repeat the process until you're happy with the result.
+
+Some ``libc`` related files may also be found in the ``file > include`` section. Those can be safely excluded most of the
+times but remember to test.
 
 
 ===========
