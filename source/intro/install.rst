@@ -59,7 +59,9 @@ There is a docker image with appimage-builder ready to be used at hub.docker.com
 
 Use the following command to get it:
 
-`docker pull appimagecrafters/appimage-builder:latest`
+.. code-block:: shell
+
+    docker pull appimagecrafters/appimage-builder:latest
 
 
 Install appimagetool
