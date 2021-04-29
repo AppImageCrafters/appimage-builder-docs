@@ -10,27 +10,37 @@ for instructions. The application code can be found `here`_.
 
 .. _here: https://www.opencode.net/azubieta/qt-appimage-template
 
-===================
-Build Configuration
-===================
+=======================
+Compile the Application
+=======================
 
-To pack an application as AppImage we need to configure it as if it were to be installed in a regular GNU/Linux
-system. That implies using a ``Release`` configuration and setting ``/usr`` as installation prefix. But
-instead of installing it to our root dir ``/``, it's going to be installed to ``AppDir``. This directory will
-be used later to also deploy the application dependencies.
+The first step in our process is to build the application binaries and deploy them into a folder named AppDir.
+It's important to use '/usr' as install prefix as appimage-builder expects to find the application resources
+such as the desktop entry and the icon in their standar paths relative to AppDir.
 
-It's recommended that the applications install procedure also deploys a desktop entry and a icon for the
-application, as in a regular installation. These resources will be used to infer the bundle metadata.
+We will use the `DESTDIR`_ make variable to install the binaries using a root different than '/'.
+Notice that while many build toolchains such as cmake support this variable it's not standard.
+
+.. _DESTDIR: https://www.gnu.org/prep/standards/html_node/DESTDIR.html
 
 .. code-block:: shell
 
-    # install the application build dependencies
+    # install build dependencies
     sudo apt-get install zlib1g-dev git cmake qtdeclarative5-dev qml-module-qtquick-layouts qml-module-qtquick-layouts qml-module-qtquick-controls2
 
     # get the application source code
     git clone https://www.opencode.net/azubieta/qt-appimage-template.git
+
+    # step into the application source code dir
     cd qt-appimage-template
+
+    # configure the build in 'release' mode using '/usr' as prefix
     cmake . -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr
+
+    # compile the application
+    make
+
+    # install the application to 'AppDir'
     make install DESTDIR=AppDir
 
 
