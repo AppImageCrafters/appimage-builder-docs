@@ -26,7 +26,7 @@ The usual approach while writing a gitlab-ci recipe for building AppImages is to
 to install the application dependencies. In the `script`_ section we will do the project configuration, binary
 building and the AppImage generation.
 
-.. _before_script: https://docs.gitlab.com/ee/ci/yaml/#before_script-and-after_script
+.. _before_script: https://docs.gitlab.com/ee/ci/yaml/#before_script
 .. _script: https://docs.gitlab.com/ee/ci/yaml/#script
 
 In the code snippet below you can find a complete ``gitlab-ci.yml`` recipe for building an AppImage for a
