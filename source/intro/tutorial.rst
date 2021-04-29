@@ -14,7 +14,7 @@ for instructions. The application code can be found `here`_.
 Build Configuration
 ===================
 
-To pack an application as AppImage we need to configure it as it were to be installed in a regular GNU/Linux
+To pack an application as AppImage we need to configure it as if it were to be installed in a regular GNU/Linux
 system. That implies using a ``Release`` configuration and setting as ``/usr`` as installation prefix. But
 instead of installing it to our root dir ``/``, it's going to be installed to ``AppDir``. This directory will
 be used later to also deploy the application dependencies.
