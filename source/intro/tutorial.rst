@@ -22,7 +22,7 @@ appimage-builder expects to find the application resources (desktop entry and th
 .. code-block:: shell
 
     # install build dependencies
-    sudo apt-get install zlib1g-dev git cmake qtdeclarative5-dev qml-module-qtquick-layouts qml-module-qtquick-layouts qml-module-qtquick-controls2
+    sudo apt-get install git cmake zlib1g-dev qtdeclarative5-dev qml-module-qtquick2 qml-module-qtquick-window2 qml-module-qtquick-layouts qml-module-qtquick-layouts qml-module-qtquick-controls2
 
     # get the application source code
     git clone https://www.opencode.net/azubieta/qt-appimage-template.git
