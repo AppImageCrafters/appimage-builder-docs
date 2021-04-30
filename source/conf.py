@@ -53,3 +53,6 @@ html_static_path = ["_static"]
 
 # set master doc file
 master_doc = "index"
+
+# logo
+html_logo = "_static/appimage-builder-sm.png"
