@@ -34,7 +34,7 @@ Having trouble? We'd like to help!
 
 .. _AppImage subreddit: https://www.reddit.com/r/appimage/
 .. _StackOverflow using the AppImage tag: https://stackoverflow.com/tags/AppImage
-.. _#appimage IRC channel: irc://irc.freenode.net/appimage
+.. _#appimage IRC channel: irc://libera.chat/appimage
 .. _issue tracker: https://github.com/AppImageCrafters/appimage-builder/issues
 
 ===========
