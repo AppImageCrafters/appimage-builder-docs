@@ -20,7 +20,7 @@ the `GnuPG documentation`_ to learn more about it.
 Signing
 =======
 
-To make appimage-builder use your key to sing the resulting AppImage is enough with specifying the key id in the
+To make appimage-builder use your key to sign the resulting AppImage is enough with specifying the key id in the
 ``AppImage >> signature`` section as follows:
 
 
