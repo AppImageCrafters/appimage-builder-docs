@@ -198,7 +198,7 @@ everything works as expected and close the application so the tests can continue
     .. _docker test environments: https://hub.docker.com/r/appimagecrafters/tests-env
 
 .. warning::
-    Docker must me installed in the system and the user must be able to use it without root permissions. Use the
+    Docker must be installed in the system and the user must be able to use it without root permissions. Use the
     following snippet to allow it.
 
     .. code-block:: shell
