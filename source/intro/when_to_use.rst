@@ -13,7 +13,7 @@ appimage-builder uses a new approach for creating AppImages which is based on:
 - restoring the environment variables while calling external binaries using function hooks
 - patching paths on function calls at runtime using function hooks
 
-This allows creating backward and forward compatible bundles whit little effort
+This allows creating backward and forward compatible bundles with little effort
 if compared to other existent solutions where the developer has to setup or
 tweak a build environment and finding/making backports of their app dependencies.
 
