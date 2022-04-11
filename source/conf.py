@@ -22,7 +22,7 @@ copyright = "2022, Alexis Lopez Zubieta"
 author = "Alexis Lopez Zubieta"
 
 # The full version, including alpha/beta/rc tags
-release = "0.9.2"
+release = "1.0.0"
 
 # -- General configuration ---------------------------------------------------
 
