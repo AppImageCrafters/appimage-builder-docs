@@ -28,28 +28,32 @@ Environment variables can be placed anywhere in the configuration file using the
 script
 ======
 
-The script section consists of a list of shell instructions. It should be used to deploy
-your application binaries and resources or other resources that cannot be resolved
-using the package manager.
+The script section consists of a list of shell instructions. Those instructions will be executed used bash and the
+environment is passed from une instruction to the other. It should be used to deploy your application binaries and
+resources or other resources.
+
+-----------------
+Default variables
+-----------------
+
+The following variables are set by appimage-builder in the script runtime:
+
+- RECIPE: recipe location
+- BUILD_DIR: build cache dir
+- SOURCE_DIR: recipe location dir
+- TARGET_APPDIR: target AppDir location
+
 
 Example of how to deploy a regular ``cmake`` application binaries.
 
 .. code-block:: yaml
 
     script:
+      - cd "$BUILD_DIR"
+      - git clone awesome-app
+      - cd awesome-app
       - cmake .
-      - make DESTDIR=Appdir install
-
-
-In the cases where you don't use a build tool or it doesn't have an install feature,
-you can run any type of command in this section. In the example below a QML file
-is deployed to be used as part of a pure QML application.
-
-.. code-block:: yaml
-
-    script:
-      - mkdir -p AppDir
-      - cp -f main.qml AppDir/
+      - make DESTDIR="$TARGET_APPDIR" install
 
 .. _recipe_appdir:
 
