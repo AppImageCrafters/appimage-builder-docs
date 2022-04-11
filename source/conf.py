@@ -18,11 +18,11 @@
 # -- Project information -----------------------------------------------------
 
 project = "appimage-builder"
-copyright = "2020, Alexis Lopez Zubieta"
+copyright = "2022, Alexis Lopez Zubieta"
 author = "Alexis Lopez Zubieta"
 
 # The full version, including alpha/beta/rc tags
-release = "0.8.8"
+release = "0.9.2"
 
 # -- General configuration ---------------------------------------------------
 
