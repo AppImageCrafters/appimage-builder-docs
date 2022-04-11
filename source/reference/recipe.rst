@@ -1,12 +1,10 @@
-.. _recipe_version_1:
+.. _recipe:
 
-""""""""""""""""""
-Version: 1 (Draft)
-""""""""""""""""""
+""""""
+Recipe
+""""""
 
 In this section is described the recipe specification and all the components that affects its behaviour.
-
-**THIS DOCUMENT IS UNDER CONSTRUCTION AND MAY CHANGE UNTIL THE 1.0 RELEASE OF APPIMAGE-BUILDER**
 
 =====================
 Environment variables
@@ -58,7 +56,7 @@ is deployed to be used as part of a pure QML application.
       - mkdir -p AppDir
       - cp -f main.qml AppDir/
 
-.. _recipe_version_1_appdir:
+.. _recipe_appdir:
 
 ======
 AppDir
@@ -72,7 +70,7 @@ The execution order is as follows:
 - configure runtime
 - run tests
 
-.. _recipe_version_1_section_scripts:
+.. _recipe_section_scripts:
 
 ---------------
 Section scripts
@@ -108,7 +106,7 @@ Path to the AppDir.
       path: ./AppDir
 
 
-.. _recipe_version_1_app_info:
+.. _recipe_app_info:
 
 --------
 app_info
@@ -135,7 +133,7 @@ app_info
     exec: usr/lib/qt5/bin/qmlscene
     exec_args: $@ ${APPDIR}/main.qml
 
-.. _recipe_version_1_apt:
+.. _recipe_apt:
 
 ---
 apt
@@ -240,7 +238,7 @@ once.
       - usr/share/doc/*/NEWS.*
       - usr/share/doc/*/TODO.*
 
-.. _recipe_version_1_test:
+.. _recipe_test:
 
 ----
 test
@@ -274,7 +272,7 @@ following parameters:
       command: "./AppRun main.qml"
       use_host_x: True
 
-.. _recipe_version_1_runtime:
+.. _recipe_runtime:
 
 -------
 runtime

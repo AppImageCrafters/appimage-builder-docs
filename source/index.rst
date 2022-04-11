@@ -96,4 +96,4 @@ First steps
     :caption: Reference
     :hidden:
 
-    reference/version_1
+    reference/recipe
