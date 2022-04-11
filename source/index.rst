@@ -48,7 +48,6 @@ First steps
    intro/overview
    intro/install
    intro/tutorial
-   intro/when_to_use
    faq
 
 :doc:`intro/overview`
@@ -59,9 +58,6 @@ First steps
 
 :doc:`intro/tutorial`
     Write your first `appimage-builder` recipe.
-
-:doc:`intro/when_to_use`
-    Learn the pros and cons of `appimage-builder`.
 
 .. toctree::
     :caption: Examples
