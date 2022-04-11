@@ -10,24 +10,19 @@ In this section is described the recipe specification and all the components tha
 Environment variables
 =====================
 
-Environment variables can be placed anywhere in the configuration file; must have ``!ENV`` before them and
-specified in this format to be parsed: ``${VAR_NAME}``.
+Environment variables can be placed anywhere in the configuration file using the following notation: ``{{VAR_NAME}}``.
 
 .. code-block:: yaml
 
     AppDir:
       app_info:
-        version: !ENV ${APP_VERSION}
-        exec: !ENV 'lib/${GNU_ARCH_TRIPLET}/qt5/bin/qmlscene'
+        version: {{APP_VERSION}}
+        exec: 'lib/{{GNU_ARCH_TRIPLET}}/qt5/bin/qmlscene'
     AppImage:
-      arch: !ENV '${TARGET_ARCH}'
-      file_name: !ENV 'myapp-${APP_VERSION}_${TIMESTAMP}-${ARCH}.AppImage'
+      arch: '{{TARGET_ARCH}}'
+      file_name: 'myapp-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage'
 
-
-**NOTE**: To mix variables that must be parsed with other that not use the following
-syntax: ``!ENV '${PARSED_VAR}-"$NON_PARSED_VAR"'``
-
-.. _recipe_version_1_script:
+.. _recipe_script:
 
 ======
 script
