@@ -25,12 +25,11 @@ Environment variables can be placed anywhere in the configuration file using the
 .. _recipe_script:
 
 ======
-script
+Script
 ======
 
-The script section consists of a list of shell instructions. Those instructions will be executed used bash and the
-environment is passed from une instruction to the other. It should be used to deploy your application binaries and
-resources or other resources.
+The ``script`` section consists of a list of shell instructions. Those instructions will be executed using bash.
+It could be used to compile your application and deploy its binaries to the ``AppDir``.
 
 -----------------
 Default variables
@@ -38,13 +37,27 @@ Default variables
 
 The following variables are set by appimage-builder in the script runtime:
 
-- RECIPE: recipe location
-- BUILD_DIR: build cache dir
-- SOURCE_DIR: recipe location dir
-- TARGET_APPDIR: target AppDir location
+- ``RECIPE``: recipe location
+- ``BUILD_DIR``: build cache dir
+- ``SOURCE_DIR``: recipe location dir
+- ``TARGET_APPDIR``: target AppDir location
+- ``BUILDER_ENV``: exported environment variables file
 
+------------------
+Exported variables
+------------------
 
-Example of how to deploy a regular ``cmake`` application binaries.
+To pass environment variables between scripts you need to write them to the file pointed by ``BUILDER_ENV`` as follows:
+
+.. code-block:: shell
+
+    echo "VAR=VALUE" >> $BUILDER_ENV
+
+--------------
+Script Example
+--------------
+
+Clone, build and deploy a ``cmake`` application.
 
 .. code-block:: yaml
 
