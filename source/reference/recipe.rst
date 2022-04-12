@@ -6,22 +6,6 @@ Recipe
 
 In this section is described the recipe specification and all the components that affects its behaviour.
 
-=====================
-Environment variables
-=====================
-
-Environment variables can be placed anywhere in the configuration file using the following notation: ``{{VAR_NAME}}``.
-
-.. code-block:: yaml
-
-    AppDir:
-      app_info:
-        version: {{APP_VERSION}}
-        exec: 'lib/{{GNU_ARCH_TRIPLET}}/qt5/bin/qmlscene'
-    AppImage:
-      arch: '{{TARGET_ARCH}}'
-      file_name: 'myapp-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage'
-
 .. _recipe_script:
 
 ======
@@ -332,3 +316,19 @@ The AppImage section refers to the final bundle creation. It's basically a wrapp
 
 .. _Making AppImages updateable: https://docs.appimage.org/packaging-guide/optional/updates.html
 .. _Signing AppImage: https://docs.appimage.org/packaging-guide/optional/signatures.html
+
+=====================
+Environment variables
+=====================
+
+Environment variables can be placed anywhere in the configuration file using the following notation: ``{{VAR_NAME}}``.
+
+.. code-block:: yaml
+
+    AppDir:
+      app_info:
+        version: {{APP_VERSION}}
+        exec: 'lib/{{GNU_ARCH_TRIPLET}}/qt5/bin/qmlscene'
+    AppImage:
+      arch: '{{TARGET_ARCH}}'
+      file_name: 'myapp-{{APP_VERSION}}_{{TIMESTAMP}}-{{ARCH}}.AppImage'
