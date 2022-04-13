@@ -88,7 +88,7 @@ This is an example of how to use the after bundle to patch a configuration file.
 
     AppDir:
       after_bundle: |
-        echo "source /etc/timidity/freepats.cfg" | tee AppDir/etc/timidity/timidity.cfg
+        echo "source /etc/timidity/freepats.cfg" | tee "$TARGET_APPDIR/etc/timidity/timidity.cfg"
 
 
 ----
