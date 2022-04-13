@@ -91,17 +91,6 @@ This is an example of how to use the after bundle to patch a configuration file.
         echo "source /etc/timidity/freepats.cfg" | tee "$TARGET_APPDIR/etc/timidity/timidity.cfg"
 
 
-----
-path
-----
-Path to the AppDir.
-
-.. code-block:: yaml
-
-    AppDir:
-      path: ./AppDir
-
-
 .. _recipe_app_info:
 
 --------
