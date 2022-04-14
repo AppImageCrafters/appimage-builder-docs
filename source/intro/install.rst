@@ -1,12 +1,29 @@
 .. _intro-install:
 
-""""""""""""""""""
-Installation guide
-""""""""""""""""""
+===================
+Install as AppImage
+===================
 
-The project is built using Python 3 and uses various command-line applications to
-fulfill its goal. Depending on the host system and the recipe the packages providing
-such applications may vary.
+``appimage-builder`` is available as ready to use AppImage for amd64 systems. Just download and make it executable.
+In case you want it to be available in your cli as a command you can move it to ``/usr/local/bin`` or other location
+in your ``PATH``.
+
+
+.. code-block:: shell
+
+    wget -O appimage-builder-x86_64.AppImage https://github.com/AppImageCrafters/appimage-builder/releases/download/Continuous/appimage-builder-1.0.0-01a1198-x86_64.AppImage
+    chmod +x appimage-builder-x86_64.AppImage
+
+    # install (optional)
+    sudo mv appimage-builder-x86_64.AppImage /usr/local/bin/appimage-builder
+
+
+"""""""""""""""""""
+Manual Installation
+"""""""""""""""""""
+
+The project is built using Python 3 and uses various command-line applications to fulfill its goal.
+Depending on the host system and the recipe the packages providing such applications may vary.
 
 -----------------------
 Installing dependencies
