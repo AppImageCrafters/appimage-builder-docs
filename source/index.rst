@@ -45,13 +45,9 @@ First steps
    :caption: First steps
    :hidden:
 
-   intro/overview
    intro/install
    intro/tutorial
    faq
-
-:doc:`intro/overview`
-    Understand what `appimage-builder` is and how it can help you.
 
 :doc:`intro/install`
     Get `appimage-builder` installed on your computer.

@@ -1,13 +1,18 @@
 .. _intro-install:
 
-===================
-Install as AppImage
-===================
+====================
+Get appimage-builder
+====================
 
-``appimage-builder`` is available as ready to use AppImage for amd64 systems. Just download and make it executable.
-In case you want it to be available in your cli as a command you can move it to ``/usr/local/bin`` or other location
+""""""""
+AppImage
+""""""""
+
+``appimage-builder`` is available as ready to use AppImage for amd64 systems. Just download it from the `releases`_ and
+make it executable. In case you want it to be available in your cli as a command you can move it to ``/usr/local/bin`` or other location
 in your ``PATH``.
 
+.. _releases: https://github.com/AppImageCrafters/appimage-builder/releases
 
 .. code-block:: shell
 
@@ -17,6 +22,20 @@ in your ``PATH``.
     # install (optional)
     sudo mv appimage-builder-x86_64.AppImage /usr/local/bin/appimage-builder
 
+
+""""""""""""
+Docker Image
+""""""""""""
+
+There is a `docker image`_ with appimage-builder ready to be used at hub.docker.com.
+
+**NOTE**: Testing AppImages is not supported on this format. Always use `--skip-test`.
+
+.. _docker image: https://hub.docker.com/r/appimagecrafters/appimage-builder
+
+.. code-block:: shell
+
+    docker pull appimagecrafters/appimage-builder:latest
 
 """""""""""""""""""
 Manual Installation
@@ -67,18 +86,6 @@ Installing development version:
 .. code-block:: shell
 
     sudo pip3 install git+https://github.com/AppImageCrafters/appimage-builder.git
-
-------
-Docker
-------
-
-There is a docker image with appimage-builder ready to be used at hub.docker.com.
-
-Use the following command to get it:
-
-.. code-block:: shell
-
-    docker pull appimagecrafters/appimage-builder:latest
 
 
 Install appimagetool
