@@ -62,6 +62,7 @@ The `AppDir`_ section is the heart of the recipe. It will contain information ab
 software being packed, its dependencies, the runtime configuration, and the tests.
 
 The execution order is as follows:
+
 - bundle dependencies
 - configure runtime
 - run tests
@@ -99,14 +100,15 @@ app_info
 
 - **id**: application id. Is a mandatory field and must match the application desktop entry name without the ``.desktop``
   extensions. It's recommended to used reverse domain notation like *org.goodcoders.app*.
-- **name**: Application name, feel free here.
-- **icon**: Application icon. It will be used as the bundle icon. The icon will be copied from
-  ``$APPDIR/usr/share/icons`` or from your system folder ``/usr/share/icons``.
+- **name**: Application name.
+- **icon**: Application icon name.
 - **version**: application version.
 - **exec**: path to the application binary. In the case of interpreted programming languages such as Java, Python or
   QML, it should point to the interpreter binary.
 - **exec_args**: arguments to be passed when starting the application. You can make use of environment variables such
   as ``$APPDIR`` to refer to the bundle root and/or ``$@`` to pass arguments to the binary.
+
+Example ``app_info`` block for a ``qmlscene`` application:
 
 .. code-block:: yaml
 
