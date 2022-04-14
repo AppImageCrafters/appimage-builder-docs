@@ -196,9 +196,8 @@ Example:
 files
 -----
 
-The files section is used to manipulate (include/exclude) files directly.
-`Globing expressions`_ can be used to match multiple files at
-once.
+The files section is used to manipulate (include/exclude) files directly. It's executed after the apt or pacman
+deploy methods. `Globing expressions`_ can be used to match multiple files at once.
 
 .. _Globing expressions: https://docs.python.org/3.6/library/glob.html#module-glob
 
@@ -206,7 +205,7 @@ once.
   inside the AppDir. i.e.: ``/usr/bin/xrandr`` will end at ``$APPDIR/usr/bin/xrandr``.
 - **exclude**: List of relative globing shell expressions to the files that will
   not be included in the `AppDir`_. Expressions will be evaluated relative to the
-  `AppDir`_. Use it to exclude unrequired files such as *man* pages or development
+  `AppDir`_. Use it to exclude unneeded files such as *man* pages or development
   resources.
 
 .. code-block:: yaml
