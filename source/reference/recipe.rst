@@ -130,9 +130,6 @@ Use the ``apt-get`` tool to deploy packages to your AppDir. Packages will be dep
 dependencies. Include all the packages that your application will require at runtime with the exception
 of those providing drivers or other hardware specific code.
 
-Entries
--------
-
 - **arch**: Binaries architecture. Multi-arch setups are allowed.
 - **sources**: apt sources to be used to retrieve the packages.
 
@@ -220,6 +217,43 @@ deploy methods. `Globing expressions`_ can be used to match multiple files at on
 
 .. _recipe_test:
 
+-------
+runtime
+-------
+
+Configure the application runtime environment, and path mappings.
+
+- **env**: Environment variables to be set at runtime.
+- **path_mappings**
+    Setup path mappings to workaround binaries containing fixed paths. The mapping is performed at runtime by
+    intercepting every system call that contains a file path and patching it. Environment variables are supported
+    as part of the file path.
+
+    Paths are specified as follows: <source>:<target>
+
+    Use the *$APPDIR* environment variable to specify paths relative to it.
+
+- **arch**: Explicitly define which architectures to be supported
+- **version**: Explicitly define the runtime version to be used
+
+Example runtime section:
+
+.. code-block:: yaml
+
+    AppDir:
+      runtime:
+        arch: [ x86_64, i386 ]
+        version: continuous
+        env:
+          PYTHONHOME: '${APPDIR}/usr'
+        path_mappings:
+            - /bin/bash:$APPDIR/bin/bash
+
+
+
+.. _AppRun project repo: https://github.com/appimagecrafters/AppRun
+
+
 ----
 test
 ----
@@ -254,35 +288,6 @@ following parameters:
 
 .. _recipe_runtime:
 
--------
-runtime
--------
-
-Advanced runtime configuration.
-
-- **env**: Environment variables to be set at runtime.
-- **path_mappings**
-    Setup path mappings to workaround binaries containing fixed paths. The mapping is performed at runtime by
-    intercepting every system call that contains a file path and patching it. Environment variables are supported
-    as part of the file path.
-
-    Paths are specified as follows: <source>:<target>
-
-    Use the *$APPDIR* environment variable to specify paths relative to it.
-
-
-
-
-.. _AppRun project repo: https://github.com/appimagecrafters/AppRun
-
-
- .. code-block:: yaml
-
-  runtime:
-    path_mappings:
-      - /etc/gimp/2.0/:$APPDIR/etc/gimp/2.0/
-    env:
-      PATH: '${APPDIR}/usr/bin:${PATH}'
 
 ========
 AppImage
