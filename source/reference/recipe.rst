@@ -126,10 +126,14 @@ Example ``app_info`` block for a ``qmlscene`` application:
 apt
 ---
 
- The apt section is used to list the packages on which the app depends and the sources
- to fetch them.
+Use the ``apt-get`` tool to deploy packages to your AppDir. Packages will be deployed allong with their
+dependencies. Include all the packages that your application will require at runtime with the exception
+of those providing drivers or other hardware specific code.
 
-- **arch**: Binaries architecture. It must match the one used in the sources configuration.
+Entries
+-------
+
+- **arch**: Binaries architecture. Multi-arch setups are allowed.
 - **sources**: apt sources to be used to retrieve the packages.
 
     * **sourceline**: apt configuration source line. It's recommended to include the Debian architecture on
@@ -137,7 +141,7 @@ apt
     * **key_url**: apt key to validate the packages in the repository. An URL to the actual
       key is expected.
 - **include**: List of packages to be included in the bundle. Package dependencies will
-  also be bundled. It's also possible to include `deb` files their path.
+  also be bundled.
 
 - **exclude**: List of packages to *not* bundle. Use it to exclude packages
   that aren't required by the application.
@@ -145,25 +149,16 @@ apt
 .. code-block:: yaml
 
    apt:
-    arch: i386
+    arch: [ i386 ]
     sources:
       - sourceline: 'deb [arch=i386] http://mx.archive.ubuntu.com/ubuntu/ bionic main restricted universe multiverse'
         key_url: 'http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3b4fe6acc0b21f32'
 
     include:
-      # downloaded file
-      - ./libmms0_0.6.4-2_amd64.deb
-
-      # package names
       - qmlscene
       - qml-module-qtquick2
     exclude:
       - qtchooser
-
-
-The tool generates a cache where the downloaded packages and other auxiliary files are
-stored, it will be located in the current work dir with the name **appimage-builder-cache**.
-It's safe to erase it and should not be included in your VCS tree.
 
 
 ------
