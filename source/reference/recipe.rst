@@ -165,9 +165,8 @@ Entries
 pacman
 ------
 
-This section can be used to instruct `appimage-builder` to deploy packages using the `pacman`
-package manager. It uses the pacman configuration from the host system by default but can
-be modified using the following keys:
+Use ``pacman`` to deploy packages to your ``AppDir``. It uses the pacman configuration from the host system by
+default but can be modified using the following keys:
 
 - **Architecture**: (Optional) define the architecture to be used by pacman
 - **repositories**: (Optional) define additional repositories
