@@ -290,15 +290,14 @@ following parameters:
 AppImage
 ========
 
-The AppImage section refers to the final bundle creation. It's basically a wrapper over ``appimagetool``
+The AppImage section refers to the final bundle creation.
 
 - **arch**: AppImage runtime architecture. Usually, it should match the embed binaries architecture, but a different
   —compatible one— could be used. For example, i386 binaries can be used in an AMD64 architecture.
 - **update-info**: AppImage update information. See `Making AppImages updateable`_.
 - **sign-key**: The key to sign the AppImage. See `Signing AppImage`_.
 - **file_name**: Use it to rename your final AppImage. By default it will be named as follows:
-  ``${AppDir.app_info.name}-${AppDir.app_info.version}-${AppImage.arch}.AppImage``. Variables are not supported yet and
-  are used only for illustrative purposes.
+  ``<AppDir.app_info.name>-<AppDir.app_info.version>-<AppImage.arch>.AppImage``
 
 .. _Making AppImages updateable: https://docs.appimage.org/packaging-guide/optional/updates.html
 .. _Signing AppImage: https://docs.appimage.org/packaging-guide/optional/signatures.html
