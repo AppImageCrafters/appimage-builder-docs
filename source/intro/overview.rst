@@ -10,9 +10,6 @@ used in modern systems and the resulting bundle will be backward compatible.
 
 .. _other AppImage creation tools: https://github.com/linuxdeploy/
 
-**NOTICE**: Only GNU/Linux distributions that contains the **APT** package manager are supported. In
-the future other package managers will be added.
-
 ----------------------------------------------------
 Walk-through of an example `appimage-builder` recipe
 ----------------------------------------------------
