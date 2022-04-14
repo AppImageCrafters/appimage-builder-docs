@@ -263,15 +263,14 @@ Therefore it can be placed inside a Docker container and executed. This section 
 have to test that the application is properly bundled and isolated, therefore it's recommended to use minimal Docker
 images (i.e.: with no desktop environment installed).
 
-**IMPORTANT**: Docker is required to be installed and running to execute the tests.
+**IMPORTANT**: Docker is required to be installed and running to execute the tests. Also the current use must have
+permissions to use it.
 
 Each test case has a name, which could be any alphanumeric string and the
 following parameters:
 
 - **image**: Docker image to be used.
 - **command**: command to execute.
-- **use_host_x**: whether to share or not the host X11 session with the container.
-  *This feature may not be supported by some containers as it depends on X11*.
 - **env**: dict of environment variables to be passed to the Docker container.
 
 .. code-block:: yaml
@@ -280,11 +279,9 @@ following parameters:
     fedora:
       image: fedora:26
       command: "./AppRun main.qml"
-      use_host_x: True
     ubuntu:
       image: ubuntu:xenial
       command: "./AppRun main.qml"
-      use_host_x: True
 
 .. _recipe_runtime:
 
