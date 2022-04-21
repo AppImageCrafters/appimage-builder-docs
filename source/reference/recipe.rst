@@ -235,6 +235,7 @@ Configure the application runtime environment, and path mappings.
 
 - **arch**: Explicitly define which architectures to be supported
 - **version**: Explicitly define the runtime version to be used
+- **preserve**: List of relative globing shell expressions to the files/folders that *should not* be modified by the AppImage generation process.
 
 Example runtime section:
 
