@@ -7,7 +7,7 @@ Frequent Asked Questions
 What kind of application I can pack as AppImage?
 ================================================
 
-In theory every kind of application no matter the technology used to build it. But some of then are a bit complex.
+In theory every kind of application no matter the technology used to build it. But some of them are a bit complex.
 Join our :ref:`community <community>` to get some help.
 
 What systems are supported?
