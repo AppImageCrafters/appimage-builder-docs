@@ -9,9 +9,11 @@ the application code.
 Requirements
 ------------
 - modern Debian/Ubuntu system
-- python3 and pip
+- python3.6 and pip
 - appimage-builder installed
 - apt-get
+
+**NOTE**: If you are embedding a python version different than 3.6 you will have to change the version number in the `PYTHONPATH`.
 
 Instructions
 ------------
