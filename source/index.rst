@@ -74,6 +74,7 @@ First steps
     advanced/updates
     advanced/signing
     advanced/testing
+    advanced/helpers
     advanced/troubleshooting
     advanced/full_bundle
 
