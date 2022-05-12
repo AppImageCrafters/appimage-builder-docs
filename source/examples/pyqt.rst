@@ -13,8 +13,6 @@ Requirements
 - appimage-builder installed
 - apt-get
 
-**NOTE**: If you are embedding a python version different than 3.6 you will have to change the version number in the `PYTHONPATH`.
-
 Instructions
 ------------
 0. Use the recipe below as template
@@ -24,6 +22,8 @@ Instructions
     `python3 -m pip install --system --ignore-installed --prefix=/usr --root=AppDir -r ./requirements.txt`
 4. Setup the **PYTHONHOME** and **PYTHONPATH** environment variables
 5. Run `appimage-builder`
+
+.. note:: If you are embedding a python version different than 3.6 you will have to change the version number in the `PYTHONPATH`.
 
 **The complete example source code can be found** `here <https://github.com/AppImageCrafters/appimage-builder/tree/master/examples/pyqt5>`_.
 
