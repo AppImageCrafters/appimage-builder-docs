@@ -55,14 +55,14 @@ provability to work on derivatives.
 
 The whole docker images list can be found: https://hub.docker.com/r/appimagecrafters/tests-env
 
-For details on how to setup the tests cases check the :ref:`recipe_version_1_test` specification.
+For details on how to setup the tests cases check the :ref:`recipe_test` specification.
 
 ==================
 Recipe tests setup
 ==================
 
 Tests cases can be described in the recipe file. Those are placed inside the ``AppDir >> test`` section. Bellow you
-will find an example of a test case for Debian. To know more about this section check the :ref:`recipe_version_1_test`
+will find an example of a test case for Debian. To know more about this section check the :ref:`recipe_test`
 specification:
 
 .. code-block:: yaml

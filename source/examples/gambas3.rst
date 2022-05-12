@@ -210,7 +210,7 @@ It seems that some of the Gambas resources cannot be found. This is provably bec
 in the system, but they are in the bundle. To correct this we use the "GB_PATH" environment variable that must point to
 the gbc3 binary.
 
-To define a :ref:`recipe_version_1_runtime` environment variable add the following to the recipe:
+To define a :ref:`recipe_runtime` environment variable add the following to the recipe:
 
 .. code-block:: yaml
 
@@ -279,6 +279,6 @@ You may also want to check the following sections:
 
 - :ref:`advanced-signing`.
 
-- :ref:`recipe_version_1`
+- :ref:`recipe`
 
 

@@ -247,7 +247,7 @@ What's next
 ===========
 
 The next steps for you is to learn how to do :ref:`advanced-updates` and :ref:`advanced-signing`. You may also want
-to check the recipe specification :ref:`recipe_version_1` for advanced tuning.
+to check the recipe specification :ref:`recipe` for advanced tuning.
 
 Thanks for your interest!
 
