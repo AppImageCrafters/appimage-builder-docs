@@ -271,6 +271,7 @@ Each test case has a name, which could be any alphanumeric string and the
 following parameters:
 
 - **image**: Docker image to be used.
+- **before_command**: run some test setup instructions here.
 - **command**: command to execute.
 - **env**: dict of environment variables to be passed to the Docker container.
 
@@ -279,6 +280,7 @@ following parameters:
   test:
     fedora:
       image: fedora:26
+      before_command: [ -f main.qml ]
       command: "./AppRun main.qml"
     ubuntu:
       image: ubuntu:xenial
