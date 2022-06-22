@@ -29,13 +29,16 @@ Docker Image
 
 There is a `docker image`_ with appimage-builder ready to be used at hub.docker.com.
 
-**NOTE**: Testing AppImages is not supported on this format. Always use `--skip-test`.
-
 .. _docker image: https://hub.docker.com/r/appimagecrafters/appimage-builder
 
 .. code-block:: shell
 
     docker pull appimagecrafters/appimage-builder:latest
+
+
+.. note::
+    Testing AppImages is not supported on this format. Always use `--skip-test`.
+
 
 """""""""""""""""""
 Manual Installation
@@ -53,9 +56,9 @@ Debian/Ubuntu
 
 .. code-block:: shell
 
-    sudo apt install -y python3-pip python3-setuptools patchelf desktop-file-utils libgdk-pixbuf2.0-dev fakeroot strace fuse
+    sudo apt install -y binutils coreutils desktop-file-utils fakeroot fuse libgdk-pixbuf2.0-dev patchelf python3-pip python3-setuptools squashfs-tools strace util-linux zsync
 
-    # Install appimagetool AppImage
+    # Install appimagetool AppImage (only for appimage-buidler < v1.0.3)
     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
     sudo chmod +x /usr/local/bin/appimagetool
 
@@ -64,9 +67,9 @@ Archlinux
 
 .. code-block:: shell
 
-    sudo pacman -Sy python-pip python-setuptools binutils patchelf desktop-file-utils gdk-pixbuf2 wget fakeroot strace
+    sudo pacman -Sy binutils desktop-file-utils fakeroot gdk-pixbuf2 patchelf python-pip python-setuptools squashfs-tools strace wget zsync
 
-    # Install appimagetool AppImage
+    # Install appimagetool AppImage (only for appimage-buidler < v1.0.3)
     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /usr/local/bin/appimagetool
     sudo chmod +x /usr/local/bin/appimagetool
 
@@ -91,13 +94,15 @@ Installing development version:
 Install appimagetool
 --------------------
 
-
+.. note:: 
+    Only for appimage-buidler < v1.0.3
+    
 There is an issue in the AppImage runtime format that prevents it proper execution inside docker containers.
 Therefore we must use the following workaround to make `appimagetool` work properly.
 
 .. code-block:: shell
 
-    # Install appimagetool AppImage
+    # Install appimagetool AppImage 
     sudo wget https://github.com/AppImage/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O /opt/appimagetool
 
     # workaround AppImage issues with Docker
