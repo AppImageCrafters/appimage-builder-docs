@@ -74,5 +74,5 @@ information line according to the selected method in ``AppImage >> update-inform
       update-information: gh-releases-zsync|probono|AppImages|latest|Subsurface-*x86_64.AppImage.zsync
       arch: aarch64
 
-Once the build finish there will be a ``.zsync`` file next to the AppImage one. You should publish both of then
+Once the build finish there will be a ``.zsync`` file next to the AppImage one. You should publish both of them
 according to the chosen update protocol.
