@@ -21,7 +21,7 @@ the zsync file.
 Update Information
 ==================
 
-AppImage Update support fetching updates from GitHub releases. To enable it se the following update information
+AppImage Update support fetching updates from GitHub releases. To enable it see the following update information
 in your recipe file:
 
 ``gh-releases-zsync|<user>|<project>|latest|*.AppImage.zsync```.
