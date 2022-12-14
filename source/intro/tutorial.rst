@@ -58,7 +58,7 @@ the issue before continuing. Notice that applications must be relocatable in ord
 .. code-block:: shell
 
     # execute the application
-    AppDir/usr/bin/appimage-demo-qt5
+    AppDir/usr/bin/qt-appimage-template
 
 
 =====================
