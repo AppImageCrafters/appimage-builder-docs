@@ -90,7 +90,7 @@ Make sure of specifying the executable path properly otherwise the execution wil
     > ? Update Information [Default: guess] : guess
     > ? Architecture :  amd64
 
-Once the questionnaire is completed the application will be executed. At this point ,ake sure here to test all your
+Once the questionnaire is completed the application will be executed. At this point make sure here to test all your
 applications features so all the external resources it may use are accessed and detected by the tool. Once your are
 done testing close the application normally.
 
