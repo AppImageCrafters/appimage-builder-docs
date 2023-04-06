@@ -25,7 +25,7 @@ Instructions
 
 .. note:: If you are embedding a python version different than 3.6 you will have to change the version number in the `PYTHONPATH`.
 
-**The complete example source code can be found** `here <https://github.com/AppImageCrafters/appimage-builder/tree/master/examples/pyqt5>`_.
+**The complete example source code can be found** `here <https://github.com/AppImageCrafters/appimage-builder/tree/main/recipes/pyqt5>`_.
 
 Recipe
 ------
