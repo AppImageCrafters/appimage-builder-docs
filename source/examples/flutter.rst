@@ -131,6 +131,7 @@ you don't want to use the `--generate` method.
      - rm -rf AppDir || true
      - cp -r build/linux/x64/release/bundle AppDir
      - mkdir -p AppDir/usr/share/icons/hicolor/64x64/apps/
+     - mv AppDir/lib/ AppDir/usr/
      - cp flutter-mark-square-64.png AppDir/usr/share/icons/hicolor/64x64/apps/
     AppDir:
       path: ./AppDir
