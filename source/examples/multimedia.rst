@@ -12,8 +12,6 @@ Multimedia application (VLC)
       - rm -r ./AppDir || true
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: vlc
         name: VLC media player

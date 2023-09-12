@@ -35,8 +35,6 @@ show how to create an full AppImage bundle for kcalc.
     version: 1
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: org.kde.kcalc
         name: kcalc

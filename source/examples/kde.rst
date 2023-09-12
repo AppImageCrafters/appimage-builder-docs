@@ -7,8 +7,6 @@ Qt/Kde application (kcalc)
     version: 1
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: org.kde.kcalc
         name: kcalc

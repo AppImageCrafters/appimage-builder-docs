@@ -9,8 +9,6 @@ This recipe will generate a aarch64 (arm64) AppImage for bash. It's cross-built 
     version: 1
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: org.gnu.bash
         name: bash

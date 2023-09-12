@@ -95,7 +95,6 @@ end a file name `AppImageBuilder.yml` will be created in the current working dir
     # appimage-builder recipe see https://appimage-builder.readthedocs.io for details
     version: 1
     AppDir:
-      path: ./AppDir
       app_info:
         id: org.appimagecrafters.gambas3-demo
         name: Gambas3 Demo
