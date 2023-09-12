@@ -134,7 +134,6 @@ you don't want to use the `--generate` method.
      - mv AppDir/lib/ AppDir/usr/
      - cp flutter-mark-square-64.png AppDir/usr/share/icons/hicolor/64x64/apps/
     AppDir:
-      path: ./AppDir
       app_info:
         id: org.appimagecrafters.hello-flutter
         name: Hello Flutter

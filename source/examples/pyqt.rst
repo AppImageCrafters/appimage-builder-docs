@@ -44,8 +44,6 @@ Recipe
 
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: org.appimage-crafters.python-appimage-example
         name: python appimage hello world

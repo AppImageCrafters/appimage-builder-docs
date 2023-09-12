@@ -11,8 +11,6 @@ Gnome application (gnome-calculator)
     version: 1
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: org.gnome.Calculator
         name: gnome-calculator

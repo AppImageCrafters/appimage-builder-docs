@@ -45,8 +45,6 @@ Recipe
     version: 1
 
     AppDir:
-      path: ./AppDir
-
       app_info:
         id: gimp
         name: GNU Image Manipulation Program
