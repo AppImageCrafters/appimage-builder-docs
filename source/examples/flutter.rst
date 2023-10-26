@@ -39,7 +39,7 @@ available in the beta channel therefore we need to enable it. Once it's enable w
 Our application binaries should be somewhere inside the build dir, usually `build/linux/x64/release/bundle`. We will
 copy this this folder to our work dir as AppDir:
 
-`cp build/linux/x64/release/bundle $PWD/AppDir`
+`cp -r build/linux/x64/release/bundle $PWD/AppDir`
 
 
 
